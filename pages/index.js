@@ -1,4 +1,6 @@
-import UnauthorizeComponent from "./components/unauthorizeComponent";
+import UnauthorizeComponent from "./components/UnauthorizeComponent";
+
+UnauthorizeComponent;
 
 export default function Home() {
   return (

@@ -9,7 +9,7 @@ const UnauthorizeComponent = () => {
         Oops! you need to login first 🙏
       </div>
       <div className=" items-center justify-center flex flex-col  ">
-        <Link href="/Login">
+        <Link href="/components/Login">
           <button class=" bg-primary hover:bg-blue-700 text-white  py-3 px-5 rounded-lg mt-5 font-medium ">
             Login
           </button>
