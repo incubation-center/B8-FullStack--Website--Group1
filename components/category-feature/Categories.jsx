@@ -10,7 +10,7 @@ import category6 from "public/Categories/category6.png";
 export default function Categories() {
   return (
     <div className=" mt-20 text-font_color">
-      <h2 className="font-bold text-2xl px-2 py-4">
+      <h2 className="font-bold text-2xl px-2 py-4 lg:text-left sm:text-center">
         Search different categories
       </h2>
       <div className="flex flex-row flex-wrap justify-center items-center">

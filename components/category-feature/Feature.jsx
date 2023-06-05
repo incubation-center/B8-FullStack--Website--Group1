@@ -1,18 +1,17 @@
-import Image from 'next/image';
+import Image from "next/image";
 import smoothie from "public/features/smoothie.jpg";
 import drink from "public/features/drink.jpg";
 import orange from "public/features/orange.jpg";
-import timeIcon from "public/icon/time.svg"
-
+import timeIcon from "public/icon/time.svg";
 
 export default function Feature() {
   return (
     <div className="mt-20 text-font_color">
-      <h2 className="font-bold text-2xl px-2 py-4">
+      <h2 className="font-bold text-2xl px-2 py-4 lg:text-left sm:text-center">
         Hey, check out today&#39;s hottest promotions
       </h2>
 
-      <div className="flex flex-row flex-wrap justify-between">
+      <div className="flex flex-row flex-wrap justify-center items-center">
         <div className="p-2">
           <Image
             src={orange}
