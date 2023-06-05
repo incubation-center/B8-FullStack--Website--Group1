@@ -1,5 +1,5 @@
-import UnauthorizeComponent from "@/components/unauthorized/UnauthorizeComponent";
 import Navbar from "../components/navbar/Navbar";
+import UnauthorizeComponent from "./unauthorized";
 export default function Home() {
   return (
     <main
