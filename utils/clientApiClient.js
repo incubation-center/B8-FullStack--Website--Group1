@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "next/router";
 
 const clientApiClient = axios.create({});
 
@@ -28,7 +29,7 @@ clientApiClient.interceptors.response.use(
         } catch (error) {
           localStorage.removeItem("refreshToken");
           localStorage.removeItem("accessToken");
-          window.location.href = "/unauthorized";
+          Router.push("/unauthorized");
         }
       }
     }
