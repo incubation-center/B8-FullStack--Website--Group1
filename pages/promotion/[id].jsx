@@ -109,7 +109,7 @@ const PromotionDtail = () => {
           </div>
         </div>
       </section>
-      <section className="mt-10">
+      <section className="mt-10 mb-20">
         <h1 className="text-2xl font-bold text-start text-font_color">
           About ABC Restaurant
         </h1>
