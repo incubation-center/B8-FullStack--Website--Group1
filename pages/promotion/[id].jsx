@@ -78,7 +78,7 @@ const PromotionDtail = () => {
             <div className="flex flex-col w-full">
               <button
                 className={`${
-                  isHoveredGetPromotion
+                  isHoveredSavePromotiom
                     ? "bg-primary text-white"
                     : "bg-transparent text-primary"
                 } flex justify-center items-center font-sans font-semibold text-sm h-[58px] rounded-[10px] mt-10 border-primary border duration-500 hover:text-white hover:bg-primary`}
@@ -86,11 +86,7 @@ const PromotionDtail = () => {
                 onMouseLeave={handleHoverSavePromotion}
               >
                 <Image
-                  src={
-                    isHoveredSavePromotiom || isHoveredGetPromotion
-                      ? "/whitelove.svg"
-                      : "/love.svg"
-                  }
+                  src={isHoveredSavePromotiom ? "/whitelove.svg" : "/love.svg"}
                   className="w-4 h-4 mr-2"
                   alt="Love"
                   width={24}
@@ -99,10 +95,10 @@ const PromotionDtail = () => {
                 Save Promotion
               </button>
               <button
-                className={`duration-500 hover:bg-transparent hover:text-primary flex justify-center items-center  font-sans font-semibold text-sm h-[58px] rounded-[10px] mt-2 border-primary border ${
-                  isHoveredSavePromotiom
-                    ? "bg-transparent text-primary"
-                    : "bg-primary text-white"
+                className={`duration-500 flex justify-center items-center  font-sans font-semibold text-sm h-[58px] rounded-[10px] mt-2 border-primary border ${
+                  isHoveredGetPromotion
+                    ? "bg-primary text-white"
+                    : " bg-transparent text-primary"
                 }`}
                 onMouseEnter={handleHoverGetPromotion}
                 onMouseLeave={handleHoverGetPromotion}
@@ -131,18 +127,11 @@ const PromotionDtail = () => {
           <div className="flex flex-row w-full gap-4">
             <Image
               src={"/facebook.svg"}
-              className="w-4 h-4 "
               alt="Facebook"
-              width={100}
-              height={100}
+              width={40}
+              height={40}
             />
-            <Image
-              src={"/twitter.svg"}
-              className="w-4 h-4"
-              alt=" Twitter"
-              width={100}
-              height={100}
-            />
+            <Image src={"/twitter.svg"} alt=" Twitter" width={40} height={40} />
           </div>
         </div>
       </section>
