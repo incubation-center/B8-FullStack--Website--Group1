@@ -49,7 +49,7 @@ const PromotionDtail = () => {
                 Street 704, Phnom Penh
               </p>
             </button>
-            <div className="flex flex-row mt-5 w-full rounded-[15px] ">
+            <div className="flex flex-row mt-5 w-full rounded-[15px] overflow-hidden">
               <Carousel infiniteLoop stopOnHover={true} showThumbs={false}>
                 {slides.map((slide, key) => (
                   <img
