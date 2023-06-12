@@ -6,7 +6,6 @@ import category4 from "public/Categories/category4.png";
 import category5 from "public/Categories/category5.png";
 import category6 from "public/Categories/category6.png";
 
-
 export default function Categories() {
   return (
     <div className=" mt-10 text-font_color">
@@ -72,4 +71,3 @@ export default function Categories() {
     </div>
   );
 }
-
