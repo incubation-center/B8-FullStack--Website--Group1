@@ -104,7 +104,7 @@ const PromotionForm = () => {
             className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6  "
             type="text"
             id="location"
-            placeholder="Promotion title or Shop name"
+            placeholder="Shop Location"
             onChange={handleChangeForm}
             value={form.location}
           />
