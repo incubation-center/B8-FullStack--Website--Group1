@@ -5,6 +5,7 @@ import PromotionForm from "../pages/formCreatePromotion";
 import Category from "../components/category-feature/Categories";
 import HotPromotion from "../components/category-feature/Feature";
 import Feature from "../components/category-feature/Feature";
+import { Hello } from "./testImage";
 
 export default function Home() {
   return (
