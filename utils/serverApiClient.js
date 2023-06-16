@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const serverApiClient = axios.create({
-  baseURL: "http://localhost:8080/promo_kh",
+  baseURL: process.env.API_URL,
 });
 
-serverApiClient.defaults.headers.common["Api-Token"] =
-  "scbnsk289248nscsndk298km";
+serverApiClient.defaults.headers.common["Api-Token"] = process.env.API_TOKEN;
 
 export default serverApiClient;
