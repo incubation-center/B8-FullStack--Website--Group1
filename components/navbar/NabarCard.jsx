@@ -3,7 +3,9 @@ import Image from "next/image";
 import SignUpModal from "../modal/SignUp";
 import Login from "../modal/Login";
 import logoutSVG from "public/logout.svg";
+import accountOutline from "public/account-outline.svg";
 import useComponentVisible from "../../utils/hooks";
+import Link from "next/link";
 
 const NabarCard = ({ handleClickOutside }) => {
   const ref = useComponentVisible(handleClickOutside);
@@ -27,16 +29,29 @@ const NabarCard = ({ handleClickOutside }) => {
             <SignUpModal />
           </div>
         ) : (
-          <button
-            className="flex w-full justify-start items-center p-2"
-            type="button"
-            onClick={() => logout()}
-          >
-            <Image src={logoutSVG} className="w-4 h-4" alt="Love" />
-            <p className="text-primary font-sans font-thin text-sm pl-2">
-              Logout
-            </p>
-          </button>
+          <div>
+            <Link href="/userProfile">
+              <button
+                className="flex w-full justify-start items-center p-2"
+                type="button"
+              >
+                <Image src={accountOutline} className="w-4 h-4" alt="Love" />
+                <p className="text-primary font-sans font-thin text-sm pl-2">
+                  My profile
+                </p>
+              </button>
+            </Link>
+            <button
+              className="flex w-full justify-start items-center p-2"
+              type="button"
+              onClick={() => logout()}
+            >
+              <Image src={logoutSVG} className="w-4 h-4" alt="Love" />
+              <p className="text-primary font-sans font-thin text-sm pl-2">
+                Logout
+              </p>
+            </button>
+          </div>
         )}
       </ul>
     </div>
