@@ -44,6 +44,7 @@ const Login = () => {
       }
     } finally {
       setIsLoading(false);
+      window.location.reload();
     }
   };
   return (
@@ -53,21 +54,8 @@ const Login = () => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        {!localStorage.getItem("accessToken") ? (
-          <>
-            <Image src={login} className="w-4 h-4" alt="Love" />
-            <p className="text-primary font-sans font-thin text-sm pl-2">
-              Login
-            </p>
-          </>
-        ) : (
-          <>
-            <Image src={login} className="w-4 h-4" alt="Love" />
-            <p className="text-primary font-sans font-thin text-sm pl-2">
-              My Profile
-            </p>
-          </>
-        )}
+        <Image src={login} className="w-4 h-4" alt="Love" />
+        <p className="text-primary font-sans font-thin text-sm pl-2">Login</p>
       </button>
       {isShowModal ? (
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
