@@ -1,21 +1,25 @@
+import clientApiClient from "@/utils/clientApiClient";
+import axios from "axios";
 import { stringify } from "postcss";
 import { useState } from "react";
 
 const upload = require("../../public/Upload.svg");
 const PromotionForm = () => {
   const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const categoryPress = () => {
     setShowCategory((prev) => !prev);
   };
   const [showCategory, setShowCategory] = useState(false);
   const categories = [
-    { name: "Travel" },
-    { name: "Food" },
-    { name: "Tech" },
-    { name: "Fashion" },
-    { name: "Grocery" },
-    { name: "Others" },
+    { id: "1", name: "Travel" },
+    { id: "2", name: "Food" },
+    { id: "3", name: "Tech" },
+    { id: "4", name: "Fashion" },
+    { id: "5", name: "Grocery" },
+    { id: "6", name: "Others" },
   ];
+  const [isLoading, setIsLoading] = useState(false);
 
   // Features
   const [filesFeature, setFileFeature] = useState([]);
@@ -23,29 +27,66 @@ const PromotionForm = () => {
   // Promotions
   const [filesPromotion, setPromotionFile] = useState([]);
   const [promotionMessage, setPromotionMessage] = useState();
-  const [form, setForm] = useState({
-    title: "",
-    location: "",
-    startDate: "",
-    endDate: "",
-    offer: "",
-    fullPrice: "",
-    priceAfterDiscount: "",
-    detail: "",
-  });
-
-  const handleChangeForm = (e) => {
-    e.preventDefault();
-    setForm({
-      title: e.target.form.title.value,
-      location: e.target.form.location.value,
-    });
-  };
-  console.log(form);
 
   const changeCategory = ({ item }) => {
     setCategory(item.name);
     setShowCategory(false);
+    setCategoryId(item.id);
+  };
+
+  const handleSubmitForm = async (event) => {
+    setIsLoading(true);
+    event.preventDefault();
+    const form = event.target;
+    const title = form.title.value;
+    const old_price = form.old_price.value;
+    const discount_percentage = form.discount_percentage.value;
+    const discount_price = form.discount_price.value;
+    const start_date = form.start_date.value;
+    const end_date = form.end_date.value;
+    const location = form.location.value;
+    const promotion_detail = form.promotion_detail.value;
+    const contact_number = form.contact_number.value;
+    const promotion_url = form.promotion_url.value;
+
+    const url = "promotion/add";
+
+    const body = {
+      title,
+      category_id: categoryId.toString(),
+      old_price,
+      discount_price,
+      discount_percentage,
+      start_date: new Date(start_date),
+      end_date: new Date(end_date),
+      location,
+      promotion_detail,
+      contact_number,
+      promotion_url,
+    };
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+        "Api-Token": "scbnsk289248nscsndk298km",
+      },
+    };
+
+    try {
+      const response = await axios.post(
+        "https://promo-kh-dev-api.onrender.com/promo_kh/promotion/add",
+        body,
+        config
+      );
+
+      console.log(response);
+
+      if (response.data.status === 200 && response.data.message === "success") {
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleFeatureFile = (e) => {
@@ -89,58 +130,88 @@ const PromotionForm = () => {
     setPromotionFile(filesPromotion.filter((x) => x.name !== i));
   };
 
+  const onDateFocus = (e) => (e.target.type = "date");
+
   return (
     <div className="flex h-max w-full p-10 flex-col self-center">
       <div className=" text-font_color text-2xl font-bold self-start py-10 w-full max-sm:mt-12">
         Post a new Promotion 🎉
       </div>
-      <form className="flex justify-between w-full h-full flex-col max-sm:-mt-9">
+      <form
+        className="flex justify-between w-full h-full flex-col max-sm:-mt-9"
+        onSubmit={handleSubmitForm}
+      >
         {/* first row */}
         <div className="flex max-sm:block">
           <input
+            required
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
             id="title"
             placeholder="Promotion title or Shop name"
-            onChange={handleChangeForm}
-            value={form.title}
+            // value={form.title}
+            // onChange={(e) => setTitle(e.target.form.title.value)}
           />
           <div className="w-5" />
           <input
+            required
             className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
             id="location"
             placeholder="Shop Location"
-            onChange={handleChangeForm}
-            value={form.location}
+            // onChange={(e) => setLocation(e.target.form.location.value)}
           />
         </div>
         {/* second row */}
         <div className=" flex max-sm:block">
           <input
+            required
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
+            id="start_date"
+            // value={form.start_date}
             placeholder="Promotion Start Date"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
+
+            // onChange={(e) => setStart_date(e.target.form.start_date.value)}
           />
           <div className="w-5" />
+
           <input
+            required
             className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
-            type="text"
+            type="date"
+            id="end_date"
             placeholder="Promotion End Date"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
+            // value={form.end_date}
+            // onChange={(e) => setEnd_date(e.target.form.end_date.value)}
           />
         </div>
         {/* third row */}
         <div className=" flex max-sm:block">
           <input
+            required
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3"
             type="text"
+            id="discount_percentage"
             placeholder="Discount Offer"
+            // value={form.discount_percentage}
+            // onChange={(e) =>
+            //   setDiscount_percentage(e.target.form.discount_percentage.value)
+            // }
           />
           <div className="w-5" />
 
           <input
             className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3 "
             type="text"
+            id="old_price"
+            required
+            // value={form.old_price}
+            // onChange={(e) => setOld_price(e.target.form.old_price.value)}
             placeholder="Full Price"
           />
           <div className="w-5" />
@@ -148,6 +219,12 @@ const PromotionForm = () => {
           <input
             className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3 "
             type="text"
+            id="discount_price"
+            required
+            // value={form.discount_price}
+            // onChange={(e) =>
+            //   setDiscount_price(e.target.form.discount_price.value)
+            // }
             placeholder="Price after Discount"
           />
         </div>
@@ -155,6 +232,7 @@ const PromotionForm = () => {
         <div className="w-full relative cursor-pointer ">
           <div
             type="button"
+            required
             onClick={categoryPress}
             className={
               showCategory
@@ -243,6 +321,7 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">photo</p>
               </div>
               <input
+                required
                 id="dropzone-file-feature"
                 onChange={handleFeatureFile}
                 type="file"
@@ -323,6 +402,7 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">for promotion</p>
               </div>
               <input
+                required
                 id="dropzone-file-promotion"
                 onChange={handlePromotionFile}
                 type="file"
@@ -376,6 +456,12 @@ const PromotionForm = () => {
           className=" mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  w-full h-20  "
           type="text"
           placeholder="Detail"
+          id="promotion_detail"
+          // value={form.promotion_detail}
+          // onChange={(e) =>
+          //   setPromotion_detail(e.target.form.promotion_detail.value)
+          // }
+          required
           rows="4"
           cols="50"
         ></textarea>
@@ -383,31 +469,49 @@ const PromotionForm = () => {
         <input
           className="mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-full  "
           type="text"
+          required
+          id="promotion_url"
+          // value={form.promotion_url}
+          // onChange={(e) => setPromotion_url(e.target.form.promotion_url.value)}
           placeholder="Referral Link or deep link"
         />
         {/* seventh row */}
         <div className="flex max-sm:block">
           <input
+            required
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
+            id="contact_number"
             placeholder="Contact Number"
+            // onChange={(e) =>
+            //   setContact_number(e.target.form.contact_number.value)
+            // }
+            // value={form.contact_number}
           />
           <div className="w-5" />
           <input
+            required
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
             type="text"
+            // value={form.promotion_url}
+            // onChange={(e) =>
+            //   setPromotion_url(e.target.form.promotion_url.value)
+            // }
             placeholder="Facebook Page"
           />
         </div>
+        <div className="flex h-50 pt-5 ">
+          <button
+            required
+            type="submit"
+            className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
+            // onClick={handleSubmitForm}
+            // onSubmit={}
+          >
+            Post
+          </button>
+        </div>
       </form>
-      <div className="flex h-50 pt-5 ">
-        <button
-          className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
-          onClick={() => {}}
-        >
-          Post
-        </button>
-      </div>
     </div>
   );
 };
