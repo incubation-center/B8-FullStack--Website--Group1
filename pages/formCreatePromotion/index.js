@@ -129,7 +129,6 @@ const PromotionForm = () => {
   const removePromotionImage = (i) => {
     setPromotionFile(filesPromotion.filter((x) => x.name !== i));
   };
-  console.log(start_date);
 
   return (
     <div className="flex h-max w-full p-10 flex-col self-center">
