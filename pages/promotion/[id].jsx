@@ -91,7 +91,7 @@ const PromotionDtail = ({ data, error }) => {
                 height={24}
               />
               <p className="text-primary font-sans font-thin text-sm pl-2">
-                {data.data.created_date}
+                {convertTimestamp(data.data.created_date)}
               </p>
             </div>
             <div className="py-[20px]">
