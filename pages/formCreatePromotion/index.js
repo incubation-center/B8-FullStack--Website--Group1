@@ -73,14 +73,12 @@ const PromotionForm = () => {
     // };
 
     try {
-      const response = await clientApiClient.post(url, { body });
-      console.log(response);
-
-      const { accessToken } = response.data.data;
+      const accessToken = localStorage.getItem("accessToken");
       clientApiClient.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
-      localStorage.setItem("accessToken", accessToken);
+      const response = await clientApiClient.post(url, { body });
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
