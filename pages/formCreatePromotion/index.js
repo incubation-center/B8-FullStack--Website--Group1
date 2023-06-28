@@ -49,7 +49,7 @@ const PromotionForm = () => {
     const contact_number = form.contact_number.value;
     const promotion_url = form.promotion_url.value;
 
-    const url = "promotion/add";
+    const url = "api/promotion/add";
 
     const body = {
       title,
@@ -65,25 +65,22 @@ const PromotionForm = () => {
       promotion_url,
     };
 
-    let config = {
-      headers: {
-        Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-        "Api-Token": "scbnsk289248nscsndk298km",
-      },
-    };
+    // let config = {
+    //   headers: {
+    //     Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+    //     "Api-Token": "scbnsk289248nscsndk298km",
+    //   },
+    // };
 
     try {
-      const response = await axios.post(
-        "https://promo-kh-dev-api.onrender.com/promo_kh/promotion/add",
-        body,
-        config
-      );
-
+      const response = await clientApiClient.post(url, { body });
       console.log(response);
 
-      if (response.data.status === 200 && response.data.message === "success") {
-        window.location.href = "/";
-      }
+      const { accessToken } = response.data.data;
+      clientApiClient.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+      localStorage.setItem("accessToken", accessToken);
     } catch (error) {
       console.log(error);
     }
