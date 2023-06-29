@@ -46,3 +46,9 @@ export const ceateCardAtom = atom({
   key: "ceateCardAtom",
   default: false,
 });
+
+// search atom
+export const searchAtom = atom({
+  key: "searchAtom",
+  default: "",
+});
