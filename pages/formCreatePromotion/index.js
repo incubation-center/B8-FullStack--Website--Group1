@@ -71,17 +71,17 @@ const PromotionForm = () => {
     //     "Api-Token": "scbnsk289248nscsndk298km",
     //   },
     // };
-
     try {
       const accessToken = localStorage.getItem("accessToken");
       clientApiClient.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
       const response = await clientApiClient.post(url, { body });
-      console.log(response);
+      console.log(response, "response");
     } catch (error) {
       console.log(error);
     }
+    console.log("Pressed");
   };
 
   const handleFeatureFile = (e) => {
@@ -314,7 +314,7 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">photo</p>
               </div>
               <input
-                required
+                // required
                 id="dropzone-file-feature"
                 onChange={handleFeatureFile}
                 type="file"
@@ -395,7 +395,7 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">for promotion</p>
               </div>
               <input
-                required
+                // required
                 id="dropzone-file-promotion"
                 onChange={handlePromotionFile}
                 type="file"
@@ -495,7 +495,6 @@ const PromotionForm = () => {
         </div>
         <div className="flex h-50 pt-5 ">
           <button
-            required
             type="submit"
             className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
             // onClick={handleSubmitForm}

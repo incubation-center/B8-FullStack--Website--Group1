@@ -10,25 +10,21 @@ export default async function handler(req, res) {
     try {
       const apiUrl = process.env.API_URL;
       const apiToken = process.env.API_TOKEN;
-      const response = await fetch(
-        `${apiUrl}/promotion/add`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: req.headers.Authorization,
-            "Api-Token": apiToken,
-          },
-          body: JSON.stringify(req.body),
-        }
-        // "https://promo-kh-dev-api.onrender.com/promo_kh/promotion/add",
-        // body,
-        // config
-      );
+      const response = await fetch(`${apiUrl}/promotion/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: req.headers.authorization,
+          "Api-Token": apiToken,
+        },
+        body: JSON.stringify(req.body.body),
+      });
 
-      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      console.log(req.headers.authorization);
 
-      if (response.data.status === 200 && response.data.message === "success") {
+      if (data.status === 200 && data.message === "success") {
         window.location.href = "/";
       }
     } catch (error) {
