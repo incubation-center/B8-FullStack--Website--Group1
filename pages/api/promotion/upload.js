@@ -1,5 +1,3 @@
-import Router from "next/router";
-
 export default async function handler(req, res) {
   if (req.method === "POST") {
     // let config = {
@@ -12,19 +10,21 @@ export default async function handler(req, res) {
     try {
       const apiUrl = process.env.API_URL;
       const apiToken = process.env.API_TOKEN;
-      const response = await fetch(`${apiUrl}/promotion/add`, {
+      const formData = new FormData();
+      formData.append("file", req.file);
+
+      const response = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: req.headers.authorization,
           "Api-Token": apiToken,
         },
-        body: JSON.stringify(req.body.body),
+        body: formData,
       });
 
       const data = await response.json();
 
-      if (data.status === 200 && data.message === "success") {
+      if (data.status === 201 && data.message === "success") {
         res.status(response.status).json(data);
       }
     } catch (error) {
