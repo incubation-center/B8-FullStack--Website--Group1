@@ -1,7 +1,7 @@
 import ProtectedRoute from "@/components/protectedRoute/ProtectedRoute";
 import { stringify } from "postcss";
 import { useState } from "react";
-
+import Head from "next/head";
 const upload = require("../../public/Upload.svg");
 const PromotionForm = () => {
   const [category, setCategory] = useState("");
@@ -91,6 +91,10 @@ const PromotionForm = () => {
 
   return (
     <ProtectedRoute>
+      <Head>
+        <title>Create Promotion | PromoKh</title>
+        <link rel="icon" href="/logo.png" />
+      </Head>
       <div className="flex h-max w-full p-10 flex-col self-center">
         <div className=" text-font_color text-2xl font-bold self-start py-10 w-full max-sm:mt-12">
           Post a new Promotion 🎉

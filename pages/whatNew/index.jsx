@@ -4,6 +4,7 @@ import { Promotions } from "@/components/popular/Promotions";
 import { searchAtom } from "@/state/recoilAtoms";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+import Head from "next/head";
 const WhatNew = ({ data }) => {
   const router = useRouter();
   const query = router.query.search || "";
@@ -13,18 +14,24 @@ const WhatNew = ({ data }) => {
   const title =
     query === "" ? "What's new" : `Search result for "${searchValue}"`;
   return (
-    <div className="m-4 mt-20 flex justify-center">
-      <div>
-        <h1 className="my-8 text-2xl font-bold text-font_color">{title}</h1>
+    <>
+      <Head>
+        <title>What New | PromoKh</title>
+        <link rel="icon" href="/logo.png" />
+      </Head>
+      <div className="m-4 mt-20 flex justify-center">
         <div>
-          <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
-            {data?.data?.map((promotion, index) => {
-              return <PromotionCard promotion={promotion} key={index} />;
-            })}
+          <h1 className="my-8 text-2xl font-bold text-font_color">{title}</h1>
+          <div>
+            <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
+              {data?.data?.map((promotion, index) => {
+                return <PromotionCard promotion={promotion} key={index} />;
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
