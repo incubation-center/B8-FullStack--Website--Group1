@@ -21,8 +21,6 @@ export default async function handler(req, res) {
       });
 
       const data = await response.json();
-      console.log(data);
-      console.log(req.headers.authorization);
 
       if (data.status === 200 && data.message === "success") {
         window.location.href = "/";
