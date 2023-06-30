@@ -169,16 +169,6 @@ const PromotionDtail = ({ promotionData, error }) => {
               </div>
             </section>
             <section className="mt-10 mb-20">
-              <h1 className="text-2xl font-bold text-start text-font_color">
-                About ABC Restaurant
-              </h1>
-              <div className="w-full rounded-[15px] mt-[20px]">
-                <img
-                  src={"/Rectangle.png"}
-                  className="w-full h-[425px] rounded-md object-cover"
-                  alt={"image"}
-                />
-              </div>
               <div className="flex flex-col w-full mt-10">
                 <h1 className="text-font_color text-2xl font-bold font-sans pb-3">
                   Share This Deal
