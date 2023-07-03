@@ -4,6 +4,8 @@ import { Promotions } from "@/components/popular/Promotions";
 import { searchAtom } from "@/state/recoilAtoms";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+import CustomPagination from "@/components/pagination/CustomPagination";
+
 import Head from "next/head";
 const WhatNew = ({ data }) => {
   const router = useRouter();
@@ -39,13 +41,18 @@ export const getServerSideProps = async (context) => {
   const urlApi = process.env.API_URL;
   const api_token = process.env.API_TOKEN;
   const searchValue = context.query.search || "";
+  const page = context.query.page || 0;
+  const size = context.query.size || 24;
   if (searchValue === "") {
     try {
-      const res = await fetch(`${urlApi}/promotion/get?category_Id=`, {
-        headers: {
-          "api-token": `${api_token}`,
-        },
-      });
+      const res = await fetch(
+        `${urlApi}/promotion/get?category_Id=&page=${page}&size=${size}`,
+        {
+          headers: {
+            "api-token": `${api_token}`,
+          },
+        }
+      );
       const data = await res.json();
 
       if (data.status !== 200) {

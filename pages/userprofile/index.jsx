@@ -33,11 +33,11 @@ const UserProfile = ({ data }) => {
         <title>Profile | Promokh</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="min-h-screen p-20">
+      <div className="min-h-screen p-11">
         <div>
           <div>
             <h1 className="my-8 text-2xl font-bold text-font_color">
-              Your Promotions
+              My Profile 💜
             </h1>
             <div className="flex">
               <div onClick={() => setActive("post")} className="cursor-pointer">
@@ -46,7 +46,7 @@ const UserProfile = ({ data }) => {
                     active === "post" && "font-bold"
                   } mr-12 text-font_color`}
                 >
-                  Your Posts
+                  My posts
                 </h3>
               </div>
               <div onClick={() => setActive("save")} className="cursor-pointer">
@@ -66,15 +66,17 @@ const UserProfile = ({ data }) => {
           <div className="mt-6">
             {active === "post" ? (
               <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
-                {postedPromotions.map((promotion, index) => {
-                  return <PromotionCard promotion={promotion} key={index} />;
-                })}
+                {postedPromotions &&
+                  postedPromotions.map((promotion, index) => {
+                    return <PromotionCard promotion={promotion} key={index} />;
+                  })}
               </div>
             ) : (
               <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
-                {savedPromotions.map((promotion, index) => {
-                  return <PromotionCard promotion={promotion} key={index} />;
-                })}
+                {savedPromotions &&
+                  savedPromotions.map((promotion, index) => {
+                    return <PromotionCard promotion={promotion} key={index} />;
+                  })}
               </div>
             )}
           </div>
