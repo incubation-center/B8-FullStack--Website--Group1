@@ -8,7 +8,6 @@ import CustomPagination from "@/components/pagination/CustomPagination";
 
 const CategoryDetail = ({ data, error }) => {
   const router = useRouter();
-  const { categoryId } = router.query;
   const [promotionsCategory, setPromotionsCategory] =
     useRecoilState(promotionsAtom);
 
@@ -59,13 +58,12 @@ const CategoryDetail = ({ data, error }) => {
 export const getServerSideProps = async (context) => {
   const urlApi = process.env.API_URL;
   const api_token = process.env.API_TOKEN;
-  const { id, page, size } = context.query;
+  const { categoryId } = context.query;
+  console.log(context.query);
 
   try {
     const res = await fetch(
-      `${urlApi}/promotion/get?category_id=${id}&page=${page || 0}&size=${
-        size || 24
-      }`,
+      `${urlApi}/promotion/get?category_id=${categoryId}&page=0&size=24`,
       {
         headers: {
           "api-token": api_token,
