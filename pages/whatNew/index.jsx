@@ -14,13 +14,6 @@ const WhatNew = ({ data, error }) => {
 
   const searchValue = useRecoilValue(searchAtom);
 
-  // handle server error
-  useEffect(() => {
-    if (error) {
-      router.push("/500");
-    }
-  }, [error]);
-
   const title =
     query === "" ? "What's new" : `Search result for "${searchValue}"`;
   return (
@@ -29,30 +22,37 @@ const WhatNew = ({ data, error }) => {
         <title>What New | PromoKh</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-
-      {data?.data?.length === 0 ? (
-        <SearchNotFound />
+      {error ? (
+        () => router.push("/500")
       ) : (
-        <div className="py-10">
-          <div className="m-10 flex justify-center">
-            <div>
-              <h1 className="my-8 text-2xl font-bold text-font_color">
-                {"What's new"}
-              </h1>
-              <div>
-                <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
-                  {data?.data?.map((promotion, index) => {
-                    return <PromotionCard promotion={promotion} key={index} />;
-                  })}
+        <>
+          {data?.data?.length === 0 ? (
+            <SearchNotFound />
+          ) : (
+            <div className="py-10">
+              <div className="m-10 flex justify-center">
+                <div>
+                  <h1 className="my-8 text-2xl font-bold text-font_color">
+                    {"What's new"}
+                  </h1>
+                  <div>
+                    <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
+                      {data?.data?.map((promotion, index) => {
+                        return (
+                          <PromotionCard promotion={promotion} key={index} />
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
+              <CustomPagination
+                resPerPage={24}
+                promotionsCount={data.totalElements}
+              />
             </div>
-          </div>
-          <CustomPagination
-            resPerPage={24}
-            promotionsCount={data.totalElements}
-          />
-        </div>
+          )}
+        </>
       )}
     </>
   );
