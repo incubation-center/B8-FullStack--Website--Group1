@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import PromotionCard from "@/components/popular/PromotionCard";
 import { useRouter } from "next/router";
 import { TailSpin } from "react-loader-spinner";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { promotionsAtom } from "@/state/recoilAtoms";
+import { categoryHomeAtom } from "@/state/recoilAtoms";
 import CustomPagination from "@/components/pagination/CustomPagination";
 
 const CategoryDetail = ({ data, error }) => {
   const router = useRouter();
+  const categoryInformation = useRecoilValue(categoryHomeAtom);
   const [promotionsCategory, setPromotionsCategory] =
     useRecoilState(promotionsAtom);
 
@@ -19,28 +21,20 @@ const CategoryDetail = ({ data, error }) => {
 
   console.log(data);
 
-  // useEffect(() => {
-  //   if (categoryId && !promotionsCategory) {
-  //     // Redirect to 404 page when category is not found
-  //     router.push("/404");
-  //   }
-  // }, [categoryId, promotionsCategory, router]);
-
-  // if (!promotionsCategory) {
-  //   // Render a loading spinner or message while redirecting to 404 page
-  //   return (
-  //     <div className="flex justify-center items-center p-48">
-  //       <TailSpin color="#00BFFF" height={80} width={80} />
-  //     </div>
-  //   );
-  // }
+  const categoryId = router.query.categoryId;
+  const category = categoryInformation.find(
+    (category) => category.id === categoryId
+  );
+  const categoryName = category ? category.name : "";
 
   return (
     <div className="py-24">
       <div className="flex justify-center">
         {/* Rest of the category detail page */}
         <div>
-          <h1 className="my-8 text-2xl font-bold text-font_color">Food</h1>
+          <h1 className="my-8 text-2xl font-bold text-font_color">
+            {categoryName}
+          </h1>
           <div>
             <div className="grid grid-cols-4 max-[480px]:grid-cols-1 gap-8">
               {data.data.map((promotion, index) => (
