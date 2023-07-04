@@ -38,10 +38,14 @@ const PromotionDtail = ({ promotionData, error }) => {
   };
 
   useEffect(() => {
-    if (promotionData) {
-      setPromotionDetailData(promotionData);
+    if (error) {
+      router.push("/500");
+    } else {
+      if (promotionData) {
+        setPromotionDetailData(promotionData);
+      }
     }
-  }, [promotionData]);
+  }, [promotionData, error, router, setPromotionDetailData]);
 
   useEffect(() => {
     async function getSavedPromotions() {
@@ -124,7 +128,12 @@ const PromotionDtail = ({ promotionData, error }) => {
                 There is no information available
               </h1>
               <div>
-                <Image src="/404.png" width={500} height={500} />
+                <Image
+                  src="/404.png"
+                  width={500}
+                  height={500}
+                  alt="Page not found"
+                />
               </div>
             </div>
           ) : (
@@ -320,7 +329,6 @@ export const getServerSideProps = async (context) => {
     );
 
     const data = await res.json();
-    console.log(data.status);
     if (data.status !== 200) {
       return {
         notFound: true,
@@ -334,7 +342,6 @@ export const getServerSideProps = async (context) => {
       },
     };
   } catch (error) {
-    console.log(error);
     return {
       props: {
         error: true,
