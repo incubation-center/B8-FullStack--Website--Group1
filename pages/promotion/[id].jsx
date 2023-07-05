@@ -15,6 +15,7 @@ import { neutral } from "tailwindcss/colors";
 import clientApiClient from "@/utils/clientApiClient";
 
 import Head from "next/head";
+import { data } from "autoprefixer";
 const PromotionDtail = ({ promotionData, error }) => {
   const router = useRouter();
   const [isHoveredSavePromotion, setIsHoveredSavePromotion] = useState(false);
@@ -160,38 +161,37 @@ const PromotionDtail = ({ promotionData, error }) => {
                               {promotionData.promotion.location}
                             </p>
                           </button>
-                          <div className="flex flex-row mt-5 w-full rounded-[15px] overflow-hidden">
-                            <Carousel
-                              infiniteLoop
-                              stopOnHover={true}
-                              showThumbs={false}
-                            >
-                              {promotionData.promotion_detail.image_url_list ===
-                              null ? (
-                                <div>
-                                  <img
-                                    src={
-                                      "https://theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png"
-                                    }
-                                    alt="Image 1"
-                                    className="object-cover w-full h-[425px] rounded-[15px]"
-                                  />
-                                </div>
-                              ) : (
-                                <div>
-                                  {" "}
-                                  <img
-                                    src={
-                                      promotionData.promotion_detail
-                                        .image_url_list
-                                    }
-                                    alt="Image 1"
-                                    className="object-cover w-full h-[425px] rounded-[15px]"
-                                  />
-                                </div>
-                              )}
-                            </Carousel>
-                          </div>
+                          {promotionData.promotion_detail.image_url_list ===
+                          null ? (
+                            <div className="flex flex-row mt-5 w-full rounded-[15px] overflow-hidden">
+                              <img
+                                src={
+                                  "https://theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png"
+                                }
+                                alt="Image 1"
+                                className="object-cover w-full h-[425px] rounded-[15px]"
+                              />
+                            </div>
+                          ) : (
+                            <div className="flex flex-row mt-5 w-full rounded-[15px] overflow-hidden">
+                              <Carousel
+                                infiniteLoop
+                                stopOnHover={true}
+                                showThumbs={false}
+                              >
+                                {promotionData.promotion_detail.image_url_list.map(
+                                  (image, key) => (
+                                    <img
+                                      src={image}
+                                      alt="Image 1"
+                                      key={key}
+                                      className="object-cover w-full h-[425px] rounded-[15px]"
+                                    />
+                                  )
+                                )}
+                              </Carousel>
+                            </div>
+                          )}
                         </div>
                         <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mt-3 lg:mt-20 ">
                           <div className="flex flex-row lg:mt-10">
@@ -204,7 +204,11 @@ const PromotionDtail = ({ promotionData, error }) => {
                             />
                             <p className="text-primary font-sans font-thin text-sm pl-2">
                               {convertTimestamp(
-                                promotionData.promotion_detail.created_date
+                                promotionData.promotion.start_date
+                              )}
+                              -
+                              {convertTimestamp(
+                                promotionData.promotion.end_date
                               )}
                             </p>
                           </div>
@@ -220,12 +224,12 @@ const PromotionDtail = ({ promotionData, error }) => {
                             <h1 className="text-font_color font-sans pb-3">
                               Contact
                             </h1>
-                            <p className="text-sub_font_color font-sans font-thin text-sm">
+                            <p className="text-font_color font-sans font-thin text-sm">
                               Tel:{" "}
                               {promotionData.promotion_detail.contact_number}
                             </p>
-                            <p className="text-sub_font_color font-sans font-thin text-sm">
-                              FackBook :{" "}
+                            <p className="text-font_color font-sans font-thin text-sm">
+                              FaceBook :{" "}
                               {promotionData.promotion_detail.facebook_name}
                             </p>
                           </div>
@@ -344,6 +348,7 @@ export const getServerSideProps = async (context) => {
     }
 
     const promotionData = data.data;
+
     return {
       props: {
         promotionData,
