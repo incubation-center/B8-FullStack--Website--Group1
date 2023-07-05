@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { promotionsAtom } from "@/state/recoilAtoms";
 import { categoryHomeAtom } from "@/state/recoilAtoms";
 import CustomPagination from "@/components/pagination/CustomPagination";
+import Head from "next/head";
 
 const CategoryDetail = ({ data, error }) => {
   const router = useRouter();
@@ -29,6 +30,10 @@ const CategoryDetail = ({ data, error }) => {
 
   return (
     <>
+      <Head>
+        <title>{categoryName} | PromoKh</title>
+        <link rel="icon" href="/icon.png" />
+      </Head>
       {error ? (
         () => router.push("/500")
       ) : (

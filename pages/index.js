@@ -19,7 +19,7 @@ export default function Home({
     <>
       <Head>
         <title>Home | PromoKh </title>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/icon.png" />
       </Head>
       <main
         className={`flex min-h-screen flex-col items-center justify-between `}

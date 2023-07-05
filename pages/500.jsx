@@ -6,6 +6,7 @@ const InternalServerError = () => {
     <>
       <Head>
         <title>Internal Server Error | PromoKH</title>
+        <link rel="icon" href="/icon.png" />
         <meta name="description" content="PromoKH 404 Error" />
         <meta property="og:title" content="404 Error | PromoKH" />
       </Head>

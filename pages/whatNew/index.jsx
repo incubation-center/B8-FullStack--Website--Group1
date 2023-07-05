@@ -20,7 +20,7 @@ const WhatNew = ({ data, error }) => {
     <>
       <Head>
         <title>What New | PromoKh</title>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/icon.png" />
       </Head>
       {error ? (
         () => router.push("/500")
