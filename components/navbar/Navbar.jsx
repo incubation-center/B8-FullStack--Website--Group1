@@ -5,10 +5,7 @@ import logo from "public/logo.png";
 import profile from "public/profile.svg";
 import CategoriseOption from "./CategoriseOption";
 import search from "public/search.svg";
-import love from "public/love.svg";
-import post_new_deal from "public/post-new-deal.svg";
 import NabarCard from "./NabarCard";
-import CreateCard from "./CreateCard";
 import Link from "next/link";
 import { profileCardAtom, ceateCardAtom } from "@/state/recoilAtoms";
 import { useRecoilState } from "recoil";
@@ -78,20 +75,10 @@ const Navbar = () => {
           <div className="relative inline-block text-sub_font_color font-sans text-sm">
             <button
               className="relative flex text-secondary justify-center items-center font-sans text-sm sm:text-xs md:text-xs lg:text-base sm:w-16 md:w-16 lg:w-28 h-9 sm:h-11 bg-primary rounded-md px-2 ml-3 md:ml-3 whitespace-nowrap"
-              onClick={() => handleClickCreateOpen()}
+              onClick={() => router.push("/formCreatePromotion")}
             >
               + Create
             </button>
-
-            {isCreateOpen && (
-              <CreateCard
-                icon1={post_new_deal}
-                title1={"Post new deal"}
-                icon2={love}
-                title2={"My saved collection"}
-                handleClickOutside={handleCloseCreate}
-              />
-            )}
           </div>
         </div>
       </div>
