@@ -348,7 +348,7 @@ export const getServerSideProps = async (context) => {
     }
 
     const promotionData = data.data;
-    console.log(promotionData);
+
     return {
       props: {
         promotionData,
