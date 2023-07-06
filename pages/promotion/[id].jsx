@@ -78,7 +78,7 @@ const PromotionDtail = ({ promotionData, error }) => {
     if (promotionData.promotion_detail.promotion_url === "") {
       alert("No promotion url");
     } else {
-      window.open(promotionData.promotion_detail.image_url_list);
+      window.open(promotionData.promotion_detail.promotion_url);
     }
   };
 
