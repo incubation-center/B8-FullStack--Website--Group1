@@ -75,7 +75,7 @@ const PromotionDtail = ({ promotionData, error }) => {
   }, [savedPromotions, router.query.id]);
 
   const handleGetPromotion = () => {
-    if (promotionData.promotion_detail.image_url_list === "") {
+    if (promotionData.promotion_detail.promotion_url === "") {
       alert("No promotion url");
     } else {
       window.open(promotionData.promotion_detail.image_url_list);
@@ -193,7 +193,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                             </div>
                           )}
                         </div>
-                        <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mt-3 lg:mt-20 ">
+                        <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mt-3 lg:mt-28 ">
                           <div className="flex flex-row lg:mt-10">
                             <Image
                               src={"/time_primcolor.svg"}
@@ -213,23 +213,23 @@ const PromotionDtail = ({ promotionData, error }) => {
                             </p>
                           </div>
                           <div className="py-[20px]">
-                            <h1 className="text-font_color font-sans pb-3">
+                            <h1 className="text-font_color font-sans pb-3 font-bold">
                               Detail
                             </h1>
-                            <p className="text-sub_font_color font-sans font-thin text-sm">
+                            <p className="text-font_color font-sans">
                               {promotionData.promotion_detail.promotion_detail}
                             </p>
                           </div>
                           <div className="">
-                            <h1 className="text-font_color font-sans pb-3">
+                            <h1 className="text-font_color font-sans pb-3 font-bold">
                               Contact
                             </h1>
-                            <p className="text-font_color font-sans font-thin text-sm">
+                            <p className="text-font_color font-sans">
                               Tel:{" "}
                               {promotionData.promotion_detail.contact_number}
                             </p>
-                            <p className="text-font_color font-sans font-thin text-sm">
-                              FaceBook :{" "}
+                            <p className="text-font_color font-sans">
+                              Facebook :{" "}
                               {promotionData.promotion_detail.facebook_name}
                             </p>
                           </div>
@@ -348,7 +348,7 @@ export const getServerSideProps = async (context) => {
     }
 
     const promotionData = data.data;
-
+    console.log(promotionData);
     return {
       props: {
         promotionData,
