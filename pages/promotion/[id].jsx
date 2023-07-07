@@ -153,7 +153,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                     <section className="">
                       <div className="flex flex-col md:flex-col lg:flex-row w-full md:gap-[50px] gap-0">
                         <div className="w-full md:w-3/1 lg:w-3/1">
-                          <h1 className="text-2xl font-bold text-start text-font_color  lg:md-20">
+                          <h1 className="text-2xl font-bold text-start text-font_color mt-28 lg:md-20">
                             {promotionData.promotion.title}
                           </h1>
                           <button
@@ -204,7 +204,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                           )}
                         </div>
                         <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mt-3 lg:mt-28 ">
-                          <div className="flex flex-row lg:mt-28">
+                          <div className="flex flex-row lg:mt-10">
                             <Image
                               src={"/time_primcolor.svg"}
                               className="w-4 h-4"
