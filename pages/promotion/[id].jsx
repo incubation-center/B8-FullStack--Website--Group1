@@ -8,14 +8,15 @@ import {
   profileCardAtom,
   promotionDetailAtom,
   savedPromotionsAtom,
+  categoryHomeAtom,
 } from "@/state/recoilAtoms";
 import { convertTimestamp } from "@/utils/convertTimestamp";
 import { useRouter } from "next/router";
-import { neutral } from "tailwindcss/colors";
+
 import clientApiClient from "@/utils/clientApiClient";
 
 import Head from "next/head";
-import { data } from "autoprefixer";
+
 const PromotionDtail = ({ promotionData, error }) => {
   const router = useRouter();
   const [isHoveredSavePromotion, setIsHoveredSavePromotion] = useState(false);
@@ -29,8 +30,8 @@ const PromotionDtail = ({ promotionData, error }) => {
   const [promotionDetailData, setPromotionDetailData] =
     useRecoilState(promotionDetailAtom);
 
-  const promtiondata = useRecoilValue(promotionDetailAtom);
-
+  const category = useRecoilValue(categoryHomeAtom);
+  console.log(category);
   const handleHoverSavePromotion = () => {
     setIsHoveredSavePromotion(!isHoveredSavePromotion);
   };
@@ -38,11 +39,25 @@ const PromotionDtail = ({ promotionData, error }) => {
     setIsHoveredGetPromotion(!isHoveredGetPromotion);
   };
 
+  const filterCategory = category.find(
+    (category) => category.id === promotionData.promotion.category_id
+  );
+  const categoryName = filterCategory ? filterCategory.name : "";
+  console.log(categoryName);
   useEffect(() => {
-    if (promotionData) {
-      setPromotionDetailData(promotionData);
+    function putPromotionData() {
+      if (promotionData) {
+        setPromotionDetailData(promotionData);
+      }
     }
-  }, [promotionData, setPromotionDetailData]);
+    function handleServerError() {
+      if (error === true) {
+        router.push("/500");
+      }
+    }
+    putPromotionData();
+    handleServerError();
+  }, [promotionData, setPromotionDetailData, error, router]);
 
   useEffect(() => {
     async function getSavedPromotions() {
@@ -118,7 +133,7 @@ const PromotionDtail = ({ promotionData, error }) => {
         <link rel="icon" href="/icon.png" />
       </Head>
       <>
-        {error ? (
+        {error === true ? (
           () => router.push("/500")
         ) : (
           <>
@@ -143,7 +158,10 @@ const PromotionDtail = ({ promotionData, error }) => {
                     <section className="">
                       <div className="flex flex-col md:flex-col lg:flex-row w-full md:gap-[50px] gap-0">
                         <div className="w-full md:w-3/1 lg:w-3/1">
-                          <h1 className="text-2xl font-bold text-start text-font_color mt-28 lg:md-20">
+                          <h1 className="text-30px md:text-xl font-bold text-primary mt-28 mb-10">
+                            {categoryName}
+                          </h1>
+                          <h1 className="text-2xl font-bold text-start text-font_color  lg:md-20">
                             {promotionData.promotion.title}
                           </h1>
                           <button
@@ -194,7 +212,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                           )}
                         </div>
                         <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mt-3 lg:mt-28 ">
-                          <div className="flex flex-row lg:mt-10">
+                          <div className="flex flex-row lg:mt-28">
                             <Image
                               src={"/time_primcolor.svg"}
                               className="w-4 h-4"
@@ -348,7 +366,7 @@ export const getServerSideProps = async (context) => {
     }
 
     const promotionData = data.data;
-
+    console.log(promotionData);
     return {
       props: {
         promotionData,
