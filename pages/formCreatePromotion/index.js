@@ -8,18 +8,27 @@ const upload = require("../../public/Upload.svg");
 const PromotionForm = () => {
   const [category, setCategory] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const [categories, setCategories] = useState([]);
   const categoryPress = () => {
     setShowCategory((prev) => !prev);
   };
   const [showCategory, setShowCategory] = useState(false);
-  const categories = [
-    { id: "1", name: "Travel" },
-    { id: "2", name: "Food" },
-    { id: "3", name: "Tech" },
-    { id: "4", name: "Fashion" },
-    { id: "5", name: "Grocery" },
-    { id: "6", name: "Others" },
-  ];
+  const get_categories = async () => {
+    const url = "api/promotion/category";
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      clientApiClient.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+      const response = await clientApiClient.get(url);
+      console.log(response.data.data);
+      setCategories(response.data.data);
+      console.log(categories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [filesFeature, setFileFeature] = useState([]);
@@ -108,7 +117,7 @@ const PromotionForm = () => {
     const location = form.location.value;
     const promotion_detail = form.promotion_detail.value;
     const contact_number = form.contact_number.value;
-
+    const facebook_name = form.facebook_page.value;
     const promotion_url = form.promotion_url.value;
 
     const url = "api/promotion/add";
@@ -120,9 +129,10 @@ const PromotionForm = () => {
       discount_price,
       discount_percentage,
       feature_image_url: imageUrl,
-      image_list: imageList,
+      image_url_list: imageList,
       start_date: new Date(start_date),
       end_date: new Date(end_date),
+      facebook_name,
       location,
       promotion_detail,
       contact_number,
@@ -480,6 +490,7 @@ const PromotionForm = () => {
             required
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
             type="text"
+            id="facebook_page"
             placeholder="Facebook Page"
           />
         </div>
