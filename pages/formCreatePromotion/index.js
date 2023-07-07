@@ -26,11 +26,73 @@ const PromotionForm = () => {
   const [message, setMessage] = useState();
   const [filesPromotion, setPromotionFile] = useState([]);
   const [promotionMessage, setPromotionMessage] = useState();
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageList, setImageList] = useState([]);
 
   const changeCategory = ({ item }) => {
     setCategory(item.name);
     setShowCategory(false);
     setCategoryId(item.id);
+  };
+
+  console.log(imageList);
+
+  const handleFeatureFile = async (e) => {
+    const url = "api/upload";
+    setMessage("");
+    const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    let file = e.target.files;
+    let formData = new FormData();
+    formData.append("file", file[0]);
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      clientApiClient.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+      const response = await clientApiClient.post(url, formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+      // console.log(response.data.data);
+      setImageUrl(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+    if (validImageTypes.includes(file[0]["type"])) {
+      setFileFeature([file[0]]);
+    }
+  };
+  const handlePromotionFile = async (e) => {
+    const url = "api/upload";
+    setPromotionMessage("");
+    const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    let file = e.target.files;
+    for (let i = 0; i < file.length; i++) {
+      let formData = new FormData();
+      formData.append("file", file[i]);
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        clientApiClient.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        const response = await clientApiClient.post(url, formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        console.log(response.data.data);
+        setImageList((prev) => [...prev, response.data.data]);
+      } catch (error) {
+        console.log(error);
+      }
+      const fileType = file[i]["type"];
+      if (validImageTypes.includes(fileType)) {
+        setPromotionFile([...filesPromotion, file[i]]);
+      } else {
+        setMessage("Only images accepted");
+      }
+    }
   };
 
   const handleSubmitForm = async (event) => {
@@ -57,6 +119,8 @@ const PromotionForm = () => {
       old_price,
       discount_price,
       discount_percentage,
+      feature_image_url: imageUrl,
+      image_list: imageList,
       start_date: new Date(start_date),
       end_date: new Date(end_date),
       location,
@@ -77,47 +141,10 @@ const PromotionForm = () => {
     }
   };
 
-  const handleFeatureFile = async (e) => {
-    const url = "api/upload";
-    setMessage("");
-    const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    let file = e.target.files;
-    let formData = new FormData();
-    formData.append("file", file[0]);
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: formData,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-    if (validImageTypes.includes(file[0]["type"])) {
-      setFileFeature([file[0]]);
-    }
-  };
   const removeImage = (i) => {
     setFileFeature(filesFeature.filter((x) => x.name !== i));
   };
 
-  const handlePromotionFile = (e) => {
-    setPromotionMessage("");
-    let file = e.target.files;
-    for (let i = 0; i < file.length; i++) {
-      const fileType = file[i]["type"];
-      const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-      if (validImageTypes.includes(fileType)) {
-        setPromotionFile([...filesPromotion, file[i]]);
-      } else {
-        setMessage("Only images accepted");
-      }
-    }
-  };
   const removePromotionImage = (i) => {
     setPromotionFile(filesPromotion.filter((x) => x.name !== i));
   };

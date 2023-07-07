@@ -24,9 +24,7 @@ export default async function handler(req, res) {
 
       const data = await response.json();
 
-      if (data.status === 200 && data.message === "success") {
-        res.status(response.status).json(data);
-      }
+      res.status(response.status).json(data);
     } catch (error) {
       console.log(error);
     }
