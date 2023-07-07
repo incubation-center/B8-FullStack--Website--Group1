@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import arrowdown from "public/arrow-down.svg";
 import { useRouter } from "next/router";
-import { categoryAtom } from "@/state/recoilAtoms";
+import { categoryAtom, categoryHomeAtom } from "@/state/recoilAtoms";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 
 function CategoriseOption() {
   const router = useRouter();
 
-  const categories = useRecoilValue(categoryAtom);
+  const categories = useRecoilValue(categoryHomeAtom);
 
   const [openCategory, setOpenCategory] = useState(false);
   const ref = useRef();
@@ -53,16 +53,20 @@ function CategoriseOption() {
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
-          tabindex="-1"
+          tabIndex="-1"
         >
-          <div className="py-1" role="none">
+          <div
+            className="py-1"
+            role="none"
+            onClick={() => setOpenCategory(false)}
+          >
             {categories.map((category, index) => (
               <a
                 key={index}
                 onClick={() => router.push(`/category/${category.id}`)}
                 className="text-gray-700 block px-4 py-2 text-sm cursor-pointer"
                 role="menuitem"
-                tabindex="-1"
+                tabIndex="-1"
                 id="menu-item-0"
               >
                 {category.name}

@@ -5,16 +5,11 @@ import Head from "next/head";
 const PageNotFound = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    setTimeout(() => {
-      router.back();
-    }, 10000);
-  }, []);
-
   return (
     <>
       <Head>
         <title>404 Error | PromoKH</title>
+        <link rel="icon" href="/icon.png" />
         <meta name="description" content="PromoKH 404 Error" />
         <meta property="og:title" content="404 Error | PromoKH" />
       </Head>
@@ -38,7 +33,7 @@ const PageNotFound = () => {
           </button>
         </div>
         <div>
-          <Image src="/404.png" width={500} height={500} />
+          <Image src="/404.png" width={500} height={500} alt="404" />
         </div>
       </div>
     </>

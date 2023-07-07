@@ -3,7 +3,7 @@ import axios from "axios";
 import Router from "next/router";
 import { stringify } from "postcss";
 import { useState } from "react";
-
+import Head from "next/head";
 const upload = require("../../public/Upload.svg");
 const PromotionForm = () => {
   const [category, setCategory] = useState("");
@@ -463,8 +463,6 @@ const PromotionForm = () => {
           className=" mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  w-full h-20  "
           type="text"
           placeholder="Detail"
-          id="promotion_detail"
-          required
           rows="4"
           cols="50"
         ></textarea>
@@ -472,37 +470,31 @@ const PromotionForm = () => {
         <input
           className="mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-full  "
           type="text"
-          required
-          id="promotion_url"
           placeholder="Referral Link or deep link"
         />
         {/* seventh row */}
         <div className="flex max-sm:block">
           <input
-            required
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
-            id="contact_number"
             placeholder="Contact Number"
           />
           <div className="w-5" />
           <input
-            required
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
             type="text"
-            id="facebook_page"
             placeholder="Facebook Page"
           />
         </div>
-        <div className="flex h-50 pt-5 ">
-          <button
-            type="submit"
-            className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
-          >
-            Post
-          </button>
-        </div>
       </form>
+      <div className="flex h-50 pt-5 ">
+        <button
+          className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
+          onClick={() => {}}
+        >
+          Post
+        </button>
+      </div>
     </div>
   );
 };
