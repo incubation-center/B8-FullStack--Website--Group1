@@ -39,11 +39,6 @@ const PromotionDtail = ({ promotionData, error }) => {
     setIsHoveredGetPromotion(!isHoveredGetPromotion);
   };
 
-  const filterCategory = category.find(
-    (category) => category.id === promotionData.promotion.category_id
-  );
-  const categoryName = filterCategory ? filterCategory.name : "";
-  console.log(categoryName);
   useEffect(() => {
     function putPromotionData() {
       if (promotionData) {
@@ -158,9 +153,6 @@ const PromotionDtail = ({ promotionData, error }) => {
                     <section className="">
                       <div className="flex flex-col md:flex-col lg:flex-row w-full md:gap-[50px] gap-0">
                         <div className="w-full md:w-3/1 lg:w-3/1">
-                          <h1 className="text-30px md:text-xl font-bold text-primary mt-28 mb-10">
-                            {categoryName}
-                          </h1>
                           <h1 className="text-2xl font-bold text-start text-font_color  lg:md-20">
                             {promotionData.promotion.title}
                           </h1>
@@ -223,8 +215,8 @@ const PromotionDtail = ({ promotionData, error }) => {
                             <p className="text-primary font-sans text-sm pl-2">
                               {convertTimestamp(
                                 promotionData.promotion.start_date
-                              )}
-                              {" "}-{" "}
+                              )}{" "}
+                              -{" "}
                               {convertTimestamp(
                                 promotionData.promotion.end_date
                               )}
