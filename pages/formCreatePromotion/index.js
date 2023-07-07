@@ -22,10 +22,8 @@ const PromotionForm = () => {
   ];
   const [isLoading, setIsLoading] = useState(false);
 
-  // Features
   const [filesFeature, setFileFeature] = useState([]);
   const [message, setMessage] = useState();
-  // Promotions
   const [filesPromotion, setPromotionFile] = useState([]);
   const [promotionMessage, setPromotionMessage] = useState();
 
@@ -74,7 +72,6 @@ const PromotionForm = () => {
       ] = `Bearer ${accessToken}`;
       const response = await clientApiClient.post(url, { body });
       alert("Promotion Created.");
-      // Router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -96,23 +93,12 @@ const PromotionForm = () => {
         },
         body: formData,
       });
-      // Router.push("/");
       console.log(response);
     } catch (error) {
       console.log(error);
     }
     if (validImageTypes.includes(file[0]["type"])) {
       setFileFeature([file[0]]);
-
-      // for (let i = 0; i < file.length; i++) {
-      //   const fileType = file[i]["type"];
-      //   const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-      //   if (validImageTypes.includes(fileType)) {
-      //     setFileFeature([...filesFeature, file[i]]);
-      //   } else {
-      //     setMessage("only images accepted");
-      //   }
-      // }
     }
   };
   const removeImage = (i) => {
@@ -153,8 +139,6 @@ const PromotionForm = () => {
             type="text"
             id="title"
             placeholder="Promotion title or Shop name"
-            // value={form.title}
-            // onChange={(e) => setTitle(e.target.form.title.value)}
           />
           <div className="w-5" />
           <input
@@ -163,7 +147,6 @@ const PromotionForm = () => {
             type="text"
             id="location"
             placeholder="Shop Location"
-            // onChange={(e) => setLocation(e.target.form.location.value)}
           />
         </div>
         {/* second row */}
@@ -173,12 +156,9 @@ const PromotionForm = () => {
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
             id="start_date"
-            // value={form.start_date}
             placeholder="Promotion Start Date"
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
-
-            // onChange={(e) => setStart_date(e.target.form.start_date.value)}
           />
           <div className="w-5" />
 
@@ -190,8 +170,6 @@ const PromotionForm = () => {
             placeholder="Promotion End Date"
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
-            // value={form.end_date}
-            // onChange={(e) => setEnd_date(e.target.form.end_date.value)}
           />
         </div>
         {/* third row */}
@@ -202,10 +180,6 @@ const PromotionForm = () => {
             type="text"
             id="discount_percentage"
             placeholder="Discount Offer"
-            // value={form.discount_percentage}
-            // onChange={(e) =>
-            //   setDiscount_percentage(e.target.form.discount_percentage.value)
-            // }
           />
           <div className="w-5" />
 
@@ -214,8 +188,6 @@ const PromotionForm = () => {
             type="text"
             id="old_price"
             required
-            // value={form.old_price}
-            // onChange={(e) => setOld_price(e.target.form.old_price.value)}
             placeholder="Full Price"
           />
           <div className="w-5" />
@@ -225,10 +197,6 @@ const PromotionForm = () => {
             type="text"
             id="discount_price"
             required
-            // value={form.discount_price}
-            // onChange={(e) =>
-            //   setDiscount_price(e.target.form.discount_price.value)
-            // }
             placeholder="Price after Discount"
           />
         </div>
@@ -325,7 +293,6 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">photo</p>
               </div>
               <input
-                // required
                 id="dropzone-file-feature"
                 onChange={handleFeatureFile}
                 type="file"
@@ -406,7 +373,6 @@ const PromotionForm = () => {
                 <p class=" text-sm  dark:text-gray-400">for promotion</p>
               </div>
               <input
-                // required
                 id="dropzone-file-promotion"
                 onChange={handlePromotionFile}
                 type="file"
@@ -461,10 +427,6 @@ const PromotionForm = () => {
           type="text"
           placeholder="Detail"
           id="promotion_detail"
-          // value={form.promotion_detail}
-          // onChange={(e) =>
-          //   setPromotion_detail(e.target.form.promotion_detail.value)
-          // }
           required
           rows="4"
           cols="50"
@@ -475,8 +437,6 @@ const PromotionForm = () => {
           type="text"
           required
           id="promotion_url"
-          // value={form.promotion_url}
-          // onChange={(e) => setPromotion_url(e.target.form.promotion_url.value)}
           placeholder="Referral Link or deep link"
         />
         {/* seventh row */}
@@ -487,20 +447,12 @@ const PromotionForm = () => {
             type="text"
             id="contact_number"
             placeholder="Contact Number"
-            // onChange={(e) =>
-            //   setContact_number(e.target.form.contact_number.value)
-            // }
-            // value={form.contact_number}
           />
           <div className="w-5" />
           <input
             required
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
             type="text"
-            // value={form.promotion_url}
-            // onChange={(e) =>
-            //   setPromotion_url(e.target.form.promotion_url.value)
-            // }
             placeholder="Facebook Page"
           />
         </div>
@@ -508,8 +460,6 @@ const PromotionForm = () => {
           <button
             type="submit"
             className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
-            // onClick={handleSubmitForm}
-            // onSubmit={}
           >
             Post
           </button>
