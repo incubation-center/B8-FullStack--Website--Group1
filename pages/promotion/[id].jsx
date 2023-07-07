@@ -175,7 +175,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                               width={24}
                               height={24}
                             />
-                            <p className="text-primary font-sans font-thin text-sm pl-2">
+                            <p className="text-primary font-sans text-sm pl-2">
                               {promotionData.promotion.location}
                             </p>
                           </button>
@@ -220,11 +220,11 @@ const PromotionDtail = ({ promotionData, error }) => {
                               width={24}
                               height={24}
                             />
-                            <p className="text-primary font-sans font-thin text-sm pl-2">
+                            <p className="text-primary font-sans text-sm pl-2">
                               {convertTimestamp(
                                 promotionData.promotion.start_date
                               )}
-                              -
+                              {" "}-{" "}
                               {convertTimestamp(
                                 promotionData.promotion.end_date
                               )}
