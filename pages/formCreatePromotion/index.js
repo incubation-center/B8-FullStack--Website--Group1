@@ -23,6 +23,8 @@ const PromotionForm = () => {
       const response = await clientApiClient.get(url);
       console.log(response.data.data);
       setCategories(response.data.data);
+      setShowCategory((prev) => !prev);
+
       console.log(categories);
     } catch (error) {
       console.log(error);
@@ -108,6 +110,7 @@ const PromotionForm = () => {
     setIsLoading(true);
     event.preventDefault();
     const form = event.target;
+    console.log(form);
     const title = form.title.value;
     const old_price = form.old_price.value;
     const discount_percentage = form.discount_percentage.value;
@@ -117,7 +120,7 @@ const PromotionForm = () => {
     const location = form.location.value;
     const promotion_detail = form.promotion_detail.value;
     const contact_number = form.contact_number.value;
-    const facebook_name = form.facebook_page.value;
+    const facebook_name = form.facebook_name.value;
     const promotion_url = form.promotion_url.value;
 
     const url = "api/promotion/add";
@@ -242,7 +245,7 @@ const PromotionForm = () => {
           <div
             type="button"
             required
-            onClick={categoryPress}
+            onClick={() => get_categories()}
             className={
               showCategory
                 ? " flex border-b-0 mt-3 h-10 content-start border flex-row justify-between items-start border-gray-400 rounded-b-none  shadow-inner rounded-md p-2 px-4 w-full"
@@ -463,6 +466,7 @@ const PromotionForm = () => {
           className=" mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  w-full h-20  "
           type="text"
           placeholder="Detail"
+          id="promotion_detail"
           rows="4"
           cols="50"
         ></textarea>
@@ -470,6 +474,7 @@ const PromotionForm = () => {
         <input
           className="mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-full  "
           type="text"
+          id="promotion_url"
           placeholder="Referral Link or deep link"
         />
         {/* seventh row */}
@@ -478,23 +483,25 @@ const PromotionForm = () => {
             className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
             type="text"
             placeholder="Contact Number"
+            id="contact_number"
           />
           <div className="w-5" />
           <input
             className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
             type="text"
+            id="facebook_name"
             placeholder="Facebook Page"
           />
         </div>
+        <div className="flex h-50 pt-5 ">
+          <button
+            className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
+            onClick={() => {}}
+          >
+            Post
+          </button>
+        </div>
       </form>
-      <div className="flex h-50 pt-5 ">
-        <button
-          className="h-full bg-primary hover:bg-blue-700 mt-3 py-2 px-5 rounded-lg font-medium  "
-          onClick={() => {}}
-        >
-          Post
-        </button>
-      </div>
     </div>
   );
 };
