@@ -1,10 +1,6 @@
 import clientApiClient from "@/utils/clientApiClient";
-import axios from "axios";
-import Router from "next/router";
-import { stringify } from "postcss";
 import { useState } from "react";
-import Head from "next/head";
-const upload = require("../../public/Upload.svg");
+
 const PromotionForm = () => {
   const [category, setCategory] = useState("");
   const [categoryId, setCategoryId] = useState("");
@@ -49,24 +45,21 @@ const PromotionForm = () => {
   console.log(imageList);
 
   const handleFeatureFile = async (e) => {
-    const url = "api/upload";
+    const url = "api/generate-upload-url";
     setMessage("");
     const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
     let file = e.target.files;
-    let formData = new FormData();
-    formData.append("file", file[0]);
     try {
       const accessToken = localStorage.getItem("accessToken");
       clientApiClient.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
-      const response = await clientApiClient.post(url, formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
+      const response = await clientApiClient.get(url);
+      await fetch(response.data.data, {
+        method: "PUT",
+        body: file[0],
       });
-      // console.log(response.data.data);
-      setImageUrl(response.data.data);
+      setImageUrl(response.data.data.split("?")[0]);
     } catch (error) {
       console.log(error);
     }
@@ -75,30 +68,27 @@ const PromotionForm = () => {
     }
   };
   const handlePromotionFile = async (e) => {
-    const url = "api/upload";
+    const url = "api/generate-upload-url";
     setPromotionMessage("");
     const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
     let file = e.target.files;
     for (let i = 0; i < file.length; i++) {
-      let formData = new FormData();
-      formData.append("file", file[i]);
-      try {
-        const accessToken = localStorage.getItem("accessToken");
-        clientApiClient.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
-        const response = await clientApiClient.post(url, formData, {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        });
-        console.log(response.data.data);
-        setImageList((prev) => [...prev, response.data.data]);
-      } catch (error) {
-        console.log(error);
-      }
       const fileType = file[i]["type"];
       if (validImageTypes.includes(fileType)) {
+        try {
+          const accessToken = localStorage.getItem("accessToken");
+          clientApiClient.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${accessToken}`;
+          const response = await clientApiClient.get(url);
+          await fetch(response.data.data, {
+            method: "PUT",
+            body: file[i],
+          });
+          setImageList((prev) => [...prev, response.data.data.split("?")[0]]);
+        } catch (error) {
+          console.log(error);
+        }
         setPromotionFile([...filesPromotion, file[i]]);
       } else {
         setMessage("Only images accepted");
