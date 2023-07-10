@@ -32,7 +32,7 @@ const CustomPagination = ({ resPerPage, promotionsCount }) => {
   };
 
   return (
-    <div className="flex mt-20 justify-center">
+    <div className="flex my-20 justify-center">
       <Pagination
         activePage={page}
         itemsCountPerPage={resPerPage}
@@ -40,9 +40,9 @@ const CustomPagination = ({ resPerPage, promotionsCount }) => {
         onChange={handlePageChange}
         nextPageText={"Next"}
         prevPageText={"Prev"}
-        itemClass="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-        activeLinkClassName="z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 text-sm font-medium text-indigo-600 focus:z-20"
-        activeClass="z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 text-sm font-medium text-indigo-600 focus:z-20"
+        itemClass="relative inline-flex items-center border border-gray-300 px-3 py-2 text-sm font-medium text-gray-500 hover:bg-primary hover:text-white"
+        activeLinkClassName="z-0 inline-flex items-center border border-primary bg-primary text-sm font-medium text-white"
+        activeClass="z-0 inline-flex items-center border border-primary bg-primary text-sm font-medium text-white"
       />
     </div>
   );
