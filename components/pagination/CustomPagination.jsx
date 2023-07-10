@@ -10,8 +10,8 @@ const CustomPagination = ({ resPerPage, promotionsCount }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  let page = searchParams.get("page") || 0;
-  page = Number(page) + 1; // Add 1 to convert zero-based to one-based
+  let page = searchParams.get("page") || 1;
+  page = Number(page); 
 
   let queryParams;
 
@@ -20,9 +20,9 @@ const CustomPagination = ({ resPerPage, promotionsCount }) => {
       queryParams = new URLSearchParams(window.location.search);
 
       if (queryParams.has("page")) {
-        queryParams.set("page", String(currentPage - 1)); // Subtract 1 to convert one-based to zero-based
+        queryParams.set("page", String(currentPage)); // Subtract 1 to convert one-based to zero-based
       } else {
-        queryParams.append("page", String(currentPage - 1)); // Subtract 1 to convert one-based to zero-based
+        queryParams.append("page", String(currentPage)); // Subtract 1 to convert one-based to zero-based
       }
 
       const path = window.location.pathname + "?" + queryParams.toString();
