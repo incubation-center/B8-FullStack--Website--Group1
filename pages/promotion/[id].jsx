@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   loginModalAtom,
   profileCardAtom,
   promotionDetailAtom,
   savedPromotionsAtom,
-  categoryHomeAtom,
 } from "@/state/recoilAtoms";
 import {
   FacebookButton,
@@ -36,8 +35,6 @@ const PromotionDtail = ({ promotionData, error }) => {
   const [promotionDetailData, setPromotionDetailData] =
     useRecoilState(promotionDetailAtom);
 
-  const category = useRecoilValue(categoryHomeAtom);
-  console.log(category);
   const handleHoverSavePromotion = () => {
     setIsHoveredSavePromotion(!isHoveredSavePromotion);
   };
@@ -127,7 +124,6 @@ const PromotionDtail = ({ promotionData, error }) => {
     }
   };
   let url = `${process.env.NEXT_PUBLIC_DOMIAN_URL}/promotion/${router.query.id}`;
-  console.log(url);
 
   return (
     <>
