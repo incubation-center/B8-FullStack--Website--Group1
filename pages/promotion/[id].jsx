@@ -126,7 +126,7 @@ const PromotionDtail = ({ promotionData, error }) => {
       setIsPromotionSaved(true);
     }
   };
-  let url = `${process.env.NEXT_PUBLIC_DOMIAN_URL}/promotion/${router.query.id}}`;
+  let url = `${process.env.NEXT_PUBLIC_DOMIAN_URL}/promotion/${router.query.id}`;
   console.log(url);
 
   return (
