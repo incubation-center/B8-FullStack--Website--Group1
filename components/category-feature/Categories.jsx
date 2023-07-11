@@ -36,7 +36,7 @@ export default function Categories({ categoryData, error }) {
                         alt={`category${category.id}`}
                         width={200}
                         height={251}
-                        className="transition duration-300 ease-in-out hover:scale-110"
+                        className="transition duration-500 ease-in-out hover:scale-110"
                       />
                     </Link>
                   </div>
