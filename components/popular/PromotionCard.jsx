@@ -11,8 +11,8 @@ const PromotionCard = ({ promotion }) => {
 
   return (
     <Link href={`/promotion/${promotion.id}`}>
-      <div className="w-[302px] h-[298px] md:w-[150px] md:h-[298px] lg:w-[302px] lg:h-[298px]">
-        <div className="w-full h-[184px]">
+      <div className="w-[302px] h-[298px] hover:bg-slate-200 duration-700 rounded-lg items-center justify-center">
+        <div className=" h-[184px]">
           <img
             src={
               promotion.feature_image_url &&
@@ -21,7 +21,7 @@ const PromotionCard = ({ promotion }) => {
                 : "https://bronzebaxxtanning.com/wp-content/uploads/promo-placeholder.jpg"
             }
             alt={promotion.title}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover rounded-lg "
           />
         </div>
         <div className="py-2">
