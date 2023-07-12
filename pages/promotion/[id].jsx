@@ -231,6 +231,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Previous"
                                           width={10}
                                           height={10}
+                                          className="!w-10 !h-10"
                                         />
                                       ) : (
                                         <Image
@@ -238,6 +239,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Previous"
                                           width={10}
                                           height={10}
+                                          className="!w-10 !h-10"
                                         />
                                       )}
                                     </button>
@@ -269,6 +271,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Next"
                                           width={10}
                                           height={10}
+                                          className="!w-10 !h-10"
                                         />
                                       ) : (
                                         <Image
@@ -276,6 +279,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Next"
                                           width={10}
                                           height={10}
+                                          className="!w-10 !h-10"
                                         />
                                       )}
                                     </button>
