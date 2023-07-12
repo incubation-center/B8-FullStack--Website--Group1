@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 //create atoms for category
 export const categoryAtom = atom({
   key: "categoryAtom",
@@ -39,6 +42,7 @@ export const categoryAtom = atom({
 export const promotionDetailAtom = atom({
   key: "promotionDetailAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 // create atoms for handle modal
@@ -57,21 +61,25 @@ export const ceateCardAtom = atom({
 export const searchAtom = atom({
   key: "searchAtom",
   default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const featureAtom = atom({
   key: "featureAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const promotionsAtom = atom({
   key: "promotionsAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const categoryHomeAtom = atom({
   key: "categoryHomeAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const loginModalAtom = atom({
@@ -87,4 +95,5 @@ export const signUpModalAtom = atom({
 export const savedPromotionsAtom = atom({
   key: "savedPromotionsAtom",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
