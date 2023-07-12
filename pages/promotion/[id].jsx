@@ -194,6 +194,50 @@ const PromotionDtail = ({ promotionData, error }) => {
                                 stopOnHover={false}
                                 showThumbs={false}
                                 className="w-fit h-fit"
+                                renderArrowPrev={(
+                                  onClickHandler,
+                                  hasPrev,
+                                  label
+                                ) =>
+                                  hasPrev && (
+                                    <button
+                                      type="button"
+                                      onClick={onClickHandler}
+                                      title={label}
+                                      style={{
+                                        position: "absolute",
+                                        zIndex: 2,
+                                        left: 15,
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                      }}
+                                    >
+                                      Previous
+                                    </button>
+                                  )
+                                }
+                                renderArrowNext={(
+                                  onClickHandler,
+                                  hasNext,
+                                  label
+                                ) =>
+                                  hasNext && (
+                                    <button
+                                      type="button"
+                                      onClick={onClickHandler}
+                                      title={label}
+                                      style={{
+                                        position: "absolute",
+                                        zIndex: 2,
+                                        right: 15,
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                      }}
+                                    >
+                                      Next
+                                    </button>
+                                  )
+                                }
                               >
                                 {promotionData.promotion_detail.image_url_list.map(
                                   (image, key) => (
