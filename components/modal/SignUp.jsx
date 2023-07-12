@@ -44,7 +44,7 @@ export default function SignUpModal() {
         password,
       });
 
-      const { accessToken, refreshToken } = response.data.data;
+      const { accessToken, refreshToken, userId } = response.data.data;
       clientApiClient.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${accessToken}`;
