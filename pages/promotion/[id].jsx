@@ -126,6 +126,17 @@ const PromotionDtail = ({ promotionData, error }) => {
 
   let url = `${process.env.NEXT_PUBLIC_DOMIAN_URL}/promotion/${router.query.id}`;
   const postFormat = `Check out the new promotion on PromoKh! ${promotionData.promotion.title} ${url}`;
+
+  // state hover arrow
+  const [isIconPrevHovered, setIsIconPrevHovered] = useState(false);
+  const [isIconNextHovered, setIsIconNextHovered] = useState(false);
+
+  const handleHoverIconPrev = () => {
+    setIsIconPrevHovered(!isIconPrevHovered);
+  };
+  const handleHoverIconNext = () => {
+    setIsIconNextHovered(!isIconNextHovered);
+  };
   return (
     <>
       <Head>
@@ -201,6 +212,8 @@ const PromotionDtail = ({ promotionData, error }) => {
                                 ) =>
                                   hasPrev && (
                                     <button
+                                      onMouseEnter={handleHoverIconPrev}
+                                      onMouseLeave={handleHoverIconPrev}
                                       type="button"
                                       onClick={onClickHandler}
                                       title={label}
@@ -212,7 +225,21 @@ const PromotionDtail = ({ promotionData, error }) => {
                                         transform: "translateY(-50%)",
                                       }}
                                     >
-                                      Previous
+                                      {isIconPrevHovered ? (
+                                        <Image
+                                          src="/previousHover.svg"
+                                          alt="Previous"
+                                          width={10}
+                                          height={10}
+                                        />
+                                      ) : (
+                                        <Image
+                                          src="/previous.svg"
+                                          alt="Previous"
+                                          width={10}
+                                          height={10}
+                                        />
+                                      )}
                                     </button>
                                   )
                                 }
@@ -223,6 +250,8 @@ const PromotionDtail = ({ promotionData, error }) => {
                                 ) =>
                                   hasNext && (
                                     <button
+                                      onMouseEnter={handleHoverIconNext}
+                                      onMouseLeave={handleHoverIconNext}
                                       type="button"
                                       onClick={onClickHandler}
                                       title={label}
@@ -234,7 +263,21 @@ const PromotionDtail = ({ promotionData, error }) => {
                                         transform: "translateY(-50%)",
                                       }}
                                     >
-                                      Next
+                                      {isIconNextHovered ? (
+                                        <Image
+                                          src="/nextHover.svg"
+                                          alt="Next"
+                                          width={10}
+                                          height={10}
+                                        />
+                                      ) : (
+                                        <Image
+                                          src="/nextArrow.svg"
+                                          alt="Next"
+                                          width={10}
+                                          height={10}
+                                        />
+                                      )}
                                     </button>
                                   )
                                 }
@@ -297,7 +340,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                             <button
                               className={`${
                                 isHoveredSavePromotion
-                                  ? "bg-primary text-white"
+                                  ? "bg-primary opacity-80 text-white"
                                   : "bg-transparent text-primary"
                               } flex justify-center items-center font-sans font-semibold text-sm h-[58px] rounded-[10px] mt-10 border-primary border duration-500 hover:text-white hover:bg-primary`}
                               onMouseEnter={handleHoverSavePromotion}
