@@ -188,11 +188,12 @@ const PromotionDtail = ({ promotionData, error }) => {
                               />
                             </div>
                           ) : (
-                            <div className="flex flex-row mt-5 w-full rounded-[15px] overflow-hidden">
+                            <div className="!w-fit mt-5 rounded-[15px] overflow-hidden">
                               <Carousel
                                 infiniteLoop
                                 stopOnHover={false}
                                 showThumbs={false}
+                                className="w-fit h-fit"
                               >
                                 {promotionData.promotion_detail.image_url_list.map(
                                   (image, key) => (
@@ -200,7 +201,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                       src={image}
                                       alt="Image 1"
                                       key={key}
-                                      className="object-cover sm:object-fill min-[439px]:h-[300px] min-[1800px]:h-[600px] h-[200px] sm:h-[425px] md:h-[425px] xl:h-[525px] rounded-[15px]"
+                                      className="object-contain bg-black bg-opacity-5 min-[439px]:h-[300px] min-[1800px]:h-[600px] h-[200px] sm:h-[425px] md:h-[425px] xl:h-[525px] rounded-[15px]"
                                     />
                                   )
                                 )}
