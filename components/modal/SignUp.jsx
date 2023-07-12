@@ -51,8 +51,9 @@ export default function SignUpModal() {
 
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      setShowModal(false);
+      localStorage.setItem("userId", userId);
       setErrorMessage("");
+      handleClose();
     } catch (error) {
       if (error.response.data.status === 409) {
         setErrorMessage(
@@ -61,10 +62,11 @@ export default function SignUpModal() {
       } else {
         setErrorMessage("Registration failed.");
       }
-    } finally {
       setIsLoading(false);
-      window.location.reload();
+      return;
     }
+    setIsLoading(false);
+    window.location.reload();
   };
 
   return (
