@@ -209,7 +209,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                               {endDate < today ? (
                                 <img
                                   src={"/expired.png"}
-                                  className=" sm:object-cover mt-5  w-full min-[439px]:h-[300px] min-[1800px]:h-[600px] h-[200px] sm:h-[425px] md:h-[425px] xl:h-[525px] rounded-[15px] "
+                                  className=" sm:object-cover mt-5 w-full min-[439px]:h-[300px] min-[1800px]:h-[600px] h-[200px] sm:h-[425px] md:h-[425px] xl:h-[525px] rounded-[15px] "
                                 />
                               ) : (
                                 <div className="!w-fit mt-5 rounded-[15px] overflow-hidden shadow-md border-1">
