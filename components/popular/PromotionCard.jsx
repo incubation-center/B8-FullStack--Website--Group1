@@ -21,7 +21,7 @@ const PromotionCard = ({ promotion }) => {
   return (
     <Link href={`/promotion/${promotion.id}`}>
       <div
-        className="w-[302px] h-[298px] duration-700 rounded-lg items-center justify-center overflow-hidden "
+        className="w-[302px] h-[298px] duration-700 rounded-lg items-center justify-center overflow-hidden transition ease-in-out hover:scale-110"
         onMouseEnter={handleScaleImage}
         onMouseLeave={handleScaleImage}
       >
