@@ -352,7 +352,7 @@ const PromotionForm = () => {
                     required
                     onClick={() => changeCategory({ item })}
                     key={item.name}
-                    className=" dark:text-gray-500 text-sm pb-2 px-5 py-2 hover:bg-primary hover:text-white"
+                    className=" dark:text-gray-500 text-sm pb-2 px-5 py-2 hover:bg-lightGray "
                   >
                     {item.name}
                   </div>
