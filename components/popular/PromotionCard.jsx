@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsClock } from "react-icons/bs";
 import { convertTimestamp } from "@/utils/convertTimestamp";
 import Link from "next/link";
@@ -14,6 +14,10 @@ const PromotionCard = ({ promotion }) => {
     setScaleImage(!scaleImage);
   };
 
+  // Convert timestamp to date
+  const endData = convertTimestamp(promotion.end_date);
+  const today = convertTimestamp(Date.now());
+
   return (
     <Link href={`/promotion/${promotion.id}`}>
       <div
@@ -22,18 +26,28 @@ const PromotionCard = ({ promotion }) => {
         onMouseLeave={handleScaleImage}
       >
         <div className=" h-[184px] rounded-lg overflow-hidden">
-          <img
-            src={
-              promotion.feature_image_url &&
-              promotion.feature_image_url.length > 0
-                ? promotion.feature_image_url
-                : "https://bronzebaxxtanning.com/wp-content/uploads/promo-placeholder.jpg"
-            }
-            alt={promotion.title}
-            className={`${
-              scaleImage ? "scale-105 duration-500" : " duration-500"
-            } w-full h-full object-cover rounded-lg`}
-          />
+          {/* If promotion is expired, show expired image */}
+          {endData < today ? (
+            <img
+              src={"expired.png"}
+              className={`${
+                scaleImage ? "scale-105 duration-500" : " duration-500"
+              } w-full h-full object-cover rounded-lg`}
+            />
+          ) : (
+            <img
+              src={
+                promotion.feature_image_url &&
+                promotion.feature_image_url.length > 0
+                  ? promotion.feature_image_url
+                  : "https://bronzebaxxtanning.com/wp-content/uploads/promo-placeholder.jpg"
+              }
+              alt={promotion.title}
+              className={`${
+                scaleImage ? "scale-105 duration-500" : " duration-500"
+              } w-full h-full object-cover rounded-lg`}
+            />
+          )}
         </div>
         <div className="py-2 px-2">
           <div className="flex items-center text-font_color">
