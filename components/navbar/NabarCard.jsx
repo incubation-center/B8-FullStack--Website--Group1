@@ -9,13 +9,14 @@ import Link from "next/link";
 import { useRecoilState } from "recoil";
 import { profileCardAtom } from "@/state/recoilAtoms";
 const NabarCard = ({ handleClickOutside }) => {
+  const { push } = useRouter();
   const ref = useComponentVisible(handleClickOutside);
   const isAuth = !!localStorage.getItem("accessToken");
   const [isProfileOpen, setIsProfileOpen] = useRecoilState(profileCardAtom);
   function logout() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    window.location.reload();
+    push("/");
   }
 
   return (
