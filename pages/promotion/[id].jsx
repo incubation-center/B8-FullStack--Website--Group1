@@ -167,7 +167,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                 ) : (
                   <div className="mt-10 sm:mt-0">
                     <section className="">
-                      <div className="flex flex-col md:flex-col lg:flex-row w-auto md:gap-[100px] gap-0 justify-center ">
+                      <div className="flex flex-col md:flex-col lg:flex-row w-auto md:gap-[50px] gap-0 justify-center ">
                         <div className="w-full lg:w-2/3">
                           <h1 className="text-2xl font-bold text-start text-font_color mt-28 lg:md-20">
                             {promotionData.promotion.title}
@@ -199,7 +199,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                               />
                             </div>
                           ) : (
-                            <div className="!w-fit mt-5 rounded-[15px] overflow-hidden">
+                            <div className="!w-fit mt-5 rounded-[15px] overflow-hidden shadow-md border-1">
                               <Carousel
                                 infiniteLoop
                                 stopOnHover={false}
@@ -231,7 +231,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Previous"
                                           width={10}
                                           height={10}
-                                          className="!w-10 !h-10"
+                                          className="w-[40px] h-[40px] md:w-16 md:h-16"
                                         />
                                       ) : (
                                         <Image
@@ -239,7 +239,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Previous"
                                           width={10}
                                           height={10}
-                                          className="!w-10 !h-10"
+                                          className="w-[40px] h-[40px] md:w-16 md:h-16"
                                         />
                                       )}
                                     </button>
@@ -271,7 +271,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Next"
                                           width={10}
                                           height={10}
-                                          className="!w-10 !h-10"
+                                          className="w-[40px] h-[40px] md:w-16 md:h-16"
                                         />
                                       ) : (
                                         <Image
@@ -279,7 +279,7 @@ const PromotionDtail = ({ promotionData, error }) => {
                                           alt="Next"
                                           width={10}
                                           height={10}
-                                          className="!w-10 !h-10"
+                                          className="w-[40px] h-[40px] md:w-16 md:h-16"
                                         />
                                       )}
                                     </button>
