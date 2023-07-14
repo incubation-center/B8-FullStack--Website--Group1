@@ -91,7 +91,7 @@ const PromotionCard = ({ promotion, postPromo = false }) => {
             />
           </div>
           <div className="flex items-center justify-center">
-            <h4 className="font-bold">
+            <h4 className="font-bold text-font_color">
               Are you sure you want to <br />
               delete your promotion?
             </h4>
@@ -123,12 +123,12 @@ const PromotionCard = ({ promotion, postPromo = false }) => {
       </div>
       <Link href={`/promotion/${promotion.id}`}>
         <div
-          className="w-[302px] h-[298px] duration-700 rounded-lg items-center justify-center overflow-hidden transition ease-in-out hover:scale-110"
+          className="w-[302px] h-[298px] duration-700 rounded-lg items-center justify-center overflow-hidden"
           onMouseEnter={handleScaleImage}
           onMouseLeave={handleScaleImage}
         >
           {hasExpired ? (
-            <div className="relative w-full h-[184px]">
+            <div className="relative w-full h-[184px] rounded-lg overflow-hidden">
               <img
                 src={"expired.png"}
                 className={`${
@@ -148,7 +148,7 @@ const PromotionCard = ({ promotion, postPromo = false }) => {
               )}
             </div>
           ) : (
-            <div className="relative w-full h-[184px]">
+            <div className="relative w-full h-[184px] rounded-lg overflow-hidden">
               <img
                 src={
                   promotion.feature_image_url
