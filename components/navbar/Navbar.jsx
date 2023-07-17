@@ -53,6 +53,8 @@ const Navbar = () => {
     }
   };
 
+  const activeSearch = router.pathname === "/whatNew" ? true : false;
+  const activeSearchHomePage = router.asPath === "/" ? true : false;
   const whatNewFocus = router.pathname === "/whatNew" ? true : false;
   return (
     <nav className="w-full top-0 bg-white fixed z-10 pb-3">
@@ -120,23 +122,30 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="sm:hidden mx-6 ">
-        <form onSubmit={handleFormSubmit}>
-          <div className="relative flex justify-center pt-2 text-sub_font_color mx-4">
-            <input
-              type="search"
-              id="default-search"
-              onChange={handleChange}
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none w-full "
-              placeholder="Search a Promotion"
-              required
-            />
-            <button type="submit" className="absolute right-0 top-0 mt-4 mr-4">
-              <Image src={search} className="lg:w-6 h-auto" alt="PromoKH" />
-            </button>
+      {/* search on phone screen */}
+      {activeSearch ||
+        (activeSearchHomePage && (
+          <div className="sm:hidden mx-6 ">
+            <form onSubmit={handleFormSubmit}>
+              <div className="relative flex justify-center pt-2 text-sub_font_color mx-4">
+                <input
+                  type="search"
+                  id="default-search"
+                  onChange={handleChange}
+                  className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none w-full "
+                  placeholder="Search a Promotion"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="absolute right-0 top-0 mt-4 mr-4"
+                >
+                  <Image src={search} className="lg:w-6 h-auto" alt="PromoKH" />
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        ))}
     </nav>
   );
 };
