@@ -123,29 +123,30 @@ const Navbar = () => {
         </div>
       </div>
       {/* search on phone screen */}
-      {activeSearch ||
-        (activeSearchHomePage && (
-          <div className="sm:hidden mx-6 ">
-            <form onSubmit={handleFormSubmit}>
-              <div className="relative flex justify-center pt-2 text-sub_font_color mx-4">
-                <input
-                  type="search"
-                  id="default-search"
-                  onChange={handleChange}
-                  className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none w-full "
-                  placeholder="Search a Promotion"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="absolute right-0 top-0 mt-4 mr-4"
-                >
-                  <Image src={search} className="lg:w-6 h-auto" alt="PromoKH" />
-                </button>
-              </div>
-            </form>
-          </div>
-        ))}
+      {activeSearchHomePage || activeSearch ? (
+        <div className="sm:hidden mx-6 ">
+          <form onSubmit={handleFormSubmit}>
+            <div className="relative flex justify-center pt-2 text-sub_font_color mx-4">
+              <input
+                type="search"
+                id="default-search"
+                onChange={handleChange}
+                className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none w-full "
+                placeholder="Search a Promotion"
+                required
+              />
+              <button
+                type="submit"
+                className="absolute right-0 top-0 mt-4 mr-4"
+              >
+                <Image src={search} className="lg:w-6 h-auto" alt="PromoKH" />
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <></>
+      )}
     </nav>
   );
 };
