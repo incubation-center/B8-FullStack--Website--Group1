@@ -6,19 +6,19 @@ import { Members } from "./Members";
 const AboutUs = () => {
   return (
     <div className="flex justify-center min-h-screen">
-      <div className="my-28">
+      <div className="my-20">
         <div className="flex flex-col">
           <div className="flex flex-col mt-8">
-            <div className="container max-w-7xl px-4">
-              <div className="flex flex-wrap justify-center text-center mb-24">
-                <div className="w-full lg:w-6/12 px-4">
-                  <h1 className="text-gray-900 text-4xl font-bold mb-8">
+            <div className="container max-w-3xl	px-4">
+              <div className="flex flex-wrap justify-center text-center mb-10">
+                <div className="w-full lg:w-8/12	 px-4">
+                  <h1 className="text-gray-900 text-2xl font-bold mb-4">
                     Meet the Team
                   </h1>
 
-                  <p className="text-gray-700 text-lg font-normal	">
-                    With over 100 years of combined experience, weve got a
-                    well-seasoned team at the helm.
+                  <p className="text-gray-700 text-base font-normal	">
+                    We are Group 1 from KD Bootcamp, a dedicated team of
+                    aspiring developers
                   </p>
                 </div>
               </div>
@@ -26,25 +26,25 @@ const AboutUs = () => {
               <div className="flex flex-wrap">
                 {Members.map((member) => (
                   <div
-                    className="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4"
+                    className="w-full md:w-6/12 lg:w-3/12 mb-3 px-6 sm:px-6 lg:px-4"
                     key={member.id}
                   >
                     <div className="flex flex-col">
-                      <Link href="#" className="mx-auto">
+                      <div className="mx-auto">
                         <Image
-                          className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
+                          className="rounded-lg drop-shadow-md transition-all duration-200 delay-100"
                           src={member.member_image}
                           width={300}
                           height={300}
                         />
-                      </Link>
+                      </div>
 
-                      <div className="text-center mt-6">
-                        <h1 className="text-font_color text-xl font-bold mb-1">
+                      <div className="text-center mt-2">
+                        <h1 className="text-font_color text-base font-bold mb-1">
                           {member.member_name}
                         </h1>
 
-                        <div className="text-gray-700 font-light mb-2">
+                        <div className="text-gray-700 text-sm mb-1">
                           {member.member_title}
                         </div>
 
@@ -57,8 +57,8 @@ const AboutUs = () => {
                               className="mx-auto"
                               src="/social_media_icon/github.svg"
                               alt="github"
-                              width={28}
-                              height={28}
+                              width={24}
+                              height={24}
                             />
                           </a>
 
@@ -70,8 +70,8 @@ const AboutUs = () => {
                               className="mx-auto"
                               src="/social_media_icon/linkedin.svg"
                               alt="linkedin"
-                              width={24}
-                              height={24}
+                              width={20}
+                              height={20}
                             />
                           </a>
                         </div>
