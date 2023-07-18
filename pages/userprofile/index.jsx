@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 import { CardSkeleton } from "@/components/popular/CardSkeleton";
 import clientApiClient from "@/utils/clientApiClient";
 const UserProfile = ({ data }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [active, setActive] = useState("post");
   const [savedPromotions, setSavedPromotions] = useState([]);
   const [postedPromotions, setPostedPromotions] = useState([]);

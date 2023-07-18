@@ -29,8 +29,13 @@ const CategoryDetail = ({ data, error }) => {
   const categoryName = category ? category.name : "";
   // search function
   const [query, setQuery] = useState("");
-  const [filteredData, setFilteredData] = useState(data.data);
+  const [filteredData, setFilteredData] = useState([]);
 
+  // udate filteredData when data.data changes
+  useEffect(() => {
+    // Update the filteredData whenever data.data changes
+    setFilteredData(data.data);
+  }, [data.data]);
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
@@ -51,7 +56,8 @@ const CategoryDetail = ({ data, error }) => {
       input.classList.remove("animate-pulse");
     }, 500); // Remove the class after 0.5 seconds (same as the animation duration)
   }
-
+  console.log(data.data, "data.data");
+  console.log(filteredData, "filteredData");
   return (
     <>
       <Head>
