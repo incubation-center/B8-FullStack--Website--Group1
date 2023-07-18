@@ -9,11 +9,11 @@ const AboutUs = () => {
       <div className="my-20">
         <div className="flex flex-col">
           <div className="flex flex-col mt-8">
-            <div className="container max-w-4xl	px-4">
+            <div className="container max-w-5xl	px-4">
               <div className="flex flex-wrap justify-center text-center mb-10">
                 <div className="w-full lg:w-8/12	 px-4">
                   <h1 className="text-gray-900 text-2xl font-bold mb-4">
-                    Meet the {" "}
+                    Meet the{" "}
                     <span className="underline underline-offset-8 decoration-softPurple decoration-4">
                       Team
                     </span>
