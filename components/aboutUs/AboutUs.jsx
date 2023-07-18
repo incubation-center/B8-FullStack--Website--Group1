@@ -9,11 +9,14 @@ const AboutUs = () => {
       <div className="my-20">
         <div className="flex flex-col">
           <div className="flex flex-col mt-8">
-            <div className="container max-w-3xl	px-4">
+            <div className="container max-w-4xl	px-4">
               <div className="flex flex-wrap justify-center text-center mb-10">
                 <div className="w-full lg:w-8/12	 px-4">
                   <h1 className="text-gray-900 text-2xl font-bold mb-4">
-                    Meet the Team
+                    Meet the {" "}
+                    <span className="underline underline-offset-8 decoration-softPurple decoration-4">
+                      Team
+                    </span>
                   </h1>
 
                   <p className="text-gray-700 text-base font-normal	">
@@ -69,6 +72,18 @@ const AboutUs = () => {
                             <Image
                               className="mx-auto"
                               src="/social_media_icon/linkedin.svg"
+                              alt="linkedin"
+                              width={20}
+                              height={20}
+                            />
+                          </a>
+                          <a
+                            href={member.member_linkedin}
+                            className="flex rounded-full hover:bg-indigo-50 h-10 w-10"
+                          >
+                            <Image
+                              className="mx-auto"
+                              src="/social_media_icon/facebook.svg"
                               alt="linkedin"
                               width={20}
                               height={20}
