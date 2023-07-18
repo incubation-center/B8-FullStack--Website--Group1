@@ -87,7 +87,7 @@ const UserProfile = ({ data }) => {
             </div>
           </div>
           <div className="mt-2">
-            <hr class="h-[2px] bg-black"></hr>
+            <hr className="h-[2px] bg-black"></hr>
           </div>
           <div className="mt-6 justify-center">
             {isLoading ? (
