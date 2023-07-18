@@ -9,9 +9,9 @@ import Head from "next/head";
 import { refetchPostPromotionsAtom } from "@/state/refetchDataAtoms.js";
 import { useRecoilState } from "recoil";
 import { CardSkeleton } from "@/components/popular/CardSkeleton";
-
+import clientApiClient from "@/utils/clientApiClient";
 const UserProfile = ({ data }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [active, setActive] = useState("post");
   const [savedPromotions, setSavedPromotions] = useState([]);
   const [postedPromotions, setPostedPromotions] = useState([]);
@@ -20,14 +20,6 @@ const UserProfile = ({ data }) => {
   );
 
   useEffect(() => {
-    callApi("/saved_promotion/get", "GET")
-      .then((res) => {
-        setSavedPromotions(res.data);
-        setRefetchPostPromotions(false);
-      })
-      .catch((err) => {
-        throw err;
-      });
     callApi("/posted_promotion/get", "GET")
       .then((res) => {
         setPostedPromotions(res.data);
@@ -40,7 +32,24 @@ const UserProfile = ({ data }) => {
       setIsLoading(false);
     }, 1000);
   }, [refetchPostPromotions]);
+  useEffect(() => {
+    async function getSavedPromotions() {
+      const accessToken = localStorage.getItem("accessToken");
 
+      if (!accessToken) return;
+
+      const url = "api/promotion/saved/get";
+
+      clientApiClient.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${accessToken}`;
+
+      const response = await clientApiClient.get(url);
+      setSavedPromotions(response.data.data);
+    }
+
+    getSavedPromotions();
+  }, [setSavedPromotions]);
   const filterSavedPromotions = savedPromotions?.filter(
     (items) => items !== null
   );
