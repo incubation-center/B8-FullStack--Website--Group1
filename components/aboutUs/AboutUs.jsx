@@ -9,7 +9,7 @@ const AboutUs = () => {
       <div className="my-20">
         <div className="flex flex-col">
           <div className="flex flex-col mt-8">
-            <div className="container max-w-5xl	px-4">
+            <div className="container max-w-4xl	px-4">
               <div className="flex flex-wrap justify-center text-center mb-10">
                 <div className="w-full lg:w-8/12	 px-4">
                   <h1 className="text-gray-900 text-2xl font-bold mb-4">
@@ -17,6 +17,7 @@ const AboutUs = () => {
                     <span className="underline underline-offset-8 decoration-softPurple decoration-4">
                       Team
                     </span>
+                    💜
                   </h1>
 
                   <p className="text-gray-700 text-base font-normal	">
@@ -33,9 +34,9 @@ const AboutUs = () => {
                     key={member.id}
                   >
                     <div className="flex flex-col">
-                      <div className="mx-auto">
+                      <div className="mx-auto overflow-hidden rounded-lg max-h-[356px] lg:max-h-[217px]">
                         <Image
-                          className="rounded-lg drop-shadow-md transition-all duration-200 delay-100"
+                          className="object-cover rounded-lg drop-shadow-md transition-all duration-200 delay-100"
                           src={member.member_image}
                           width={300}
                           height={300}
@@ -44,7 +45,7 @@ const AboutUs = () => {
 
                       <div className="text-center mt-2">
                         <h1 className="text-font_color text-base font-bold mb-1">
-                          {member.member_name}
+                          🫰{member.member_name}
                         </h1>
 
                         <div className="text-gray-700 text-sm mb-1">
@@ -78,7 +79,7 @@ const AboutUs = () => {
                             />
                           </a>
                           <a
-                            href={member.member_linkedin}
+                            href={member.member_facebook}
                             className="flex rounded-full hover:bg-indigo-50 h-10 w-10"
                           >
                             <Image
