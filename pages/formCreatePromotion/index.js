@@ -202,7 +202,7 @@ const PromotionForm = () => {
         <title>Create Promotion | PromoKh</title>
         <link rel="icon" href="/icon.png" />
       </Head>
-      <div className="flex h-max  w-full p-10 flex-col">
+      <div className="flex h-max  w-full max-w-6xl p-10 flex-col m-auto">
         <form
           className="flex justify-between max-w-[80%] min-w-[90%] w-full self-center h-full flex-col max-sm:-mt-9"
           onSubmit={handleSubmitForm}
