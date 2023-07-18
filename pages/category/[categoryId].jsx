@@ -56,8 +56,7 @@ const CategoryDetail = ({ data, error }) => {
       input.classList.remove("animate-pulse");
     }, 500); // Remove the class after 0.5 seconds (same as the animation duration)
   }
-  console.log(data.data, "data.data");
-  console.log(filteredData, "filteredData");
+
   return (
     <>
       <Head>
