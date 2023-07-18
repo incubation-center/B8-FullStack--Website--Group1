@@ -67,13 +67,13 @@ const CategoryDetail = ({ data, error }) => {
         () => router.push("/500")
       ) : (
         <>
-          <div className="flex justify-center sm:justify-end">
-            <div className="m-4 mt-20 relative sm:mr-32">
+          <div className="flex justify-center md:justify-end md:hidden">
+            <div className=" mt-20 relative ">
               <input
                 type="search"
                 id="default-search"
                 onChange={handleInputChange}
-                className="text-sub_font_color border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none lg:w-96 md:w-60 sm:w-40 transition-transform duration-300"
+                className="text-sub_font_color border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none lg:w-96 md:w-60  transition-transform duration-300"
                 placeholder="Search a Promotion"
                 required
               />
@@ -92,9 +92,31 @@ const CategoryDetail = ({ data, error }) => {
             <div className="flex justify-center sm:px-10">
               {/* Rest of the category detail page */}
               <div>
-                <h1 className="my-8 text-2xl font-bold text-font_color underline underline-offset-8 decoration-softPurple decoration-4">
-                  {categoryName}
-                </h1>
+                <div className="flex justify-between">
+                  <h1 className="my-8 md:mt-24 text-2xl font-bold text-font_color underline underline-offset-8 decoration-softPurple decoration-4">
+                    {categoryName}
+                  </h1>
+                  <div className="flex justify-center sm:justify-end">
+                    <div className="m-4 mt-24 relative lg:mr-32 hidden md:inline">
+                      <input
+                        type="search"
+                        id="default-search"
+                        onChange={handleInputChange}
+                        className="text-sub_font_color border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-3xl text-sm focus:outline-none lg:w-96 md:w-60 sm:w-40 transition-transform duration-300"
+                        placeholder="Search a Promotion"
+                        required
+                      />
+                      <Image
+                        src="/search.svg"
+                        alt="search"
+                        width={20}
+                        height={20}
+                        className="absolute top-3 right-4"
+                        onClick={handleSearchClick}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div>
                   {filteredData.length === 0 ? (
                     <SearchNotFound />
