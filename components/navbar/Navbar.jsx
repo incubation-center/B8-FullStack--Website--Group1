@@ -63,7 +63,7 @@ const Navbar = () => {
           <Link href="/">
             <Image
               src={logo}
-              width={250}
+              width={150}
               alt="PromoKH"
               className="hidden sm:inline"
             />
