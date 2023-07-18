@@ -207,14 +207,14 @@ const PromotionForm = () => {
           className="flex justify-between max-w-[80%] min-w-[90%] w-full self-center h-full flex-col max-sm:-mt-9"
           onSubmit={handleSubmitForm}
         >
-          <div className=" text-font_color text-2xl font-bold  self-start py-10 w-full max-sm:mt-12">
-            Post a new Promotion 🎉
+          <div className=" text-font_color text-2xl font-bold  self-start pt-16 pb-4 w-full max-sm:mt-12 max-sm:text-xl">
+            🎉 Post a new Promotion
           </div>
           {/* first row */}
           <div className="flex max-sm:block">
             <input
               required
-              className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
+              className="placeholder-gray-500 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
               type="text"
               id="title"
               placeholder="Promotion title or Shop name"
@@ -222,7 +222,7 @@ const PromotionForm = () => {
             <div className="w-5" />
             <input
               required
-              className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
+              className="placeholder-gray-500 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
               type="text"
               id="location"
               placeholder="Shop Location"
@@ -231,7 +231,7 @@ const PromotionForm = () => {
           {/* second row */}
           <div className=" flex max-sm:block">
             <div className=" flex content-start  flex-row justify-between items-start border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 ">
-              <label className=" text-gray-400 ">Start Date</label>
+              <label className=" text-gray-500 ">Start Date</label>
               <input
                 className="   min-w-[44%] max-w-[30%] min-h-[100%] bg-gray-200 rounded-md px-2 "
                 required
@@ -261,7 +261,7 @@ const PromotionForm = () => {
             <div className="w-5" />
 
             <div className=" flex content-start  flex-row justify-between items-start border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 ">
-              <label className=" text-gray-400">End Date</label>
+              <label className=" text-gray-500">End Date</label>
               <input
                 className="   min-w-[44%] max-w-[30%] min-h-[100%] bg-gray-200 rounded-md px-2 "
                 required
@@ -304,7 +304,7 @@ const PromotionForm = () => {
                   />
                 </svg>
                 <input
-                  className="ml-2 text-font_color text-sm grow"
+                  className="placeholder-gray-500 appearance-none border-none outline-none ml-2 text-font_color text-sm grow"
                   type="number"
                   step="0.01"
                   id="discount_percentage"
@@ -312,7 +312,7 @@ const PromotionForm = () => {
                 />
               </div>
 
-              <label class="text-gray-400 text-sm">
+              <label class="text-gray-400 text-xs">
                 Optional, you may leave it blank
               </label>
             </div>
@@ -334,14 +334,14 @@ const PromotionForm = () => {
                 </svg>
 
                 <input
-                  className="ml-2 text-font_color text-sm grow  "
+                  className="placeholder-gray-500 appearance-none border-none outline-none	ml-2 text-font_color text-sm grow  "
                   type="number"
                   id="old_price"
                   step="0.01"
                   placeholder="Full Price"
                 />
               </div>
-              <label className="text-gray-400 text-sm">
+              <label className="text-gray-400 text-xs">
                 Optional, you may leave it blank
               </label>
             </div>
@@ -361,14 +361,14 @@ const PromotionForm = () => {
                   />
                 </svg>
                 <input
-                  className=" ml-2 text-font_color text-sm grow  "
+                  className="placeholder-gray-500 appearance-none border-none outline-none ml-2 text-font_color text-sm grow"
                   type="number"
                   step="0.01"
                   id="discount_price"
                   placeholder="Price after Discount"
                 />
               </div>
-              <label className="text-gray-400 text-sm">
+              <label className="text-gray-400 text-xs">
                 Optional, you may leave it blank
               </label>
             </div>
@@ -382,7 +382,7 @@ const PromotionForm = () => {
               onClick={() => get_categories()}
               className={
                 showCategory
-                  ? " flex border-b-0 mt-3 h-10 content-start border flex-row justify-between items-start border-gray-400 rounded-b-none  shadow-inner rounded-md p-2 px-4 w-full"
+                  ? " flex border-b-0 mt-3 h-10 content-start border  flex-row justify-between items-start border-gray-400 rounded-b-none  shadow-inner rounded-md p-2 px-4 w-full"
                   : " flex mt-3 h-10 content-start border  flex-row justify-between border-gray-400  shadow-inner rounded-md p-2 px-4 w-full"
               }
             >
@@ -418,7 +418,7 @@ const PromotionForm = () => {
               </div>
             </div>
             {showCategory ? (
-              <div className=" absolute w-full shadow-xl bg-white rounded-b-lg py-2 border-gray-400 border border-t-0">
+              <div className=" absolute w-full shadow-xl bg-white rounded-b-lg py-2 placeholder-gray-500 border-gray-400 border border-t-0">
                 {categories.map((item) => (
                   <div
                     required
@@ -474,7 +474,7 @@ const PromotionForm = () => {
                   class="hidden"
                 />
               </label>
-              <label className="flex self-start text-gray-400 text-sm ">
+              <label className="flex self-start text-gray-400 text-xs ">
                 Upload one image for the featured photo
               </label>
 
@@ -560,7 +560,7 @@ const PromotionForm = () => {
                   class="hidden"
                 />
               </label>
-              <label className="flex self-start text-gray-400 text-sm ">
+              <label className="flex self-start text-gray-400 text-xs ">
                 You can upload multiple images for your promotion
               </label>
               <div className="flex flex-wrap gap-2 mt-2">
@@ -605,7 +605,7 @@ const PromotionForm = () => {
           </div>
           {/* fifth row */}
           <textarea
-            className=" mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  w-full h-20  "
+            className="placeholder-gray-500 mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  w-full h-20  "
             type="text"
             placeholder="Detail"
             id="promotion_detail"
@@ -614,7 +614,7 @@ const PromotionForm = () => {
           ></textarea>
           {/* sixth row */}
           <input
-            className="mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-full  "
+            className="placeholder-gray-500 mt-3 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-full  "
             type="text"
             id="promotion_url"
             placeholder="Referral Link or deep link"
@@ -622,14 +622,14 @@ const PromotionForm = () => {
           {/* seventh row */}
           <div className="flex max-sm:block">
             <input
-              className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
+              className="placeholder-gray-500  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3"
               type="text"
               placeholder="Contact Number"
               id="contact_number"
             />
             <div className="w-5" />
             <input
-              className="border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
+              className="placeholder-gray-500 border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-3/6 max-sm:w-full mt-3 "
               type="text"
               id="facebook_name"
               placeholder="Facebook Page"
