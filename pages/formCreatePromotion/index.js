@@ -313,7 +313,7 @@ const PromotionForm = () => {
               </div>
 
               <label class="text-gray-400 text-sm">
-                Optional, you may leave it blank Optional
+                Optional, you may leave it blank
               </label>
             </div>
 
