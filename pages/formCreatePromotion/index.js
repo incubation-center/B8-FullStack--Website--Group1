@@ -202,14 +202,14 @@ const PromotionForm = () => {
         <title>Create Promotion | PromoKh</title>
         <link rel="icon" href="/icon.png" />
       </Head>
-      <div className="flex h-max w-full p-10 flex-col self-center">
-        <div className=" text-font_color text-2xl font-bold self-start py-10 w-full max-sm:mt-12">
-          Post a new Promotion 🎉
-        </div>
+      <div className="flex h-max  w-full p-10 flex-col">
         <form
-          className="flex justify-between w-full h-full flex-col max-sm:-mt-9"
+          className="flex justify-between max-w-[80%] min-w-[90%] w-full self-center h-full flex-col max-sm:-mt-9"
           onSubmit={handleSubmitForm}
         >
+          <div className=" text-font_color text-2xl font-bold  self-start py-10 w-full max-sm:mt-12">
+            Post a new Promotion 🎉
+          </div>
           {/* first row */}
           <div className="flex max-sm:block">
             <input
@@ -271,32 +271,107 @@ const PromotionForm = () => {
             </div>
           </div>
           {/* third row */}
-          <div className=" flex max-sm:block">
-            <input
-              required
-              className="  border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3"
-              type="text"
-              id="discount_percentage"
-              placeholder="Discount Offer"
-            />
-            <div className="w-5" />
+          <div className=" flex flex-row max-w-full max-lg:block">
+            <div className="flex flex-col w-full max-sm:w-full mt-3">
+              <div className=" flex border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 ">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 19L19 5"
+                    stroke="#1E1926"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M7 10C8.65685 10 10 8.65685 10 7C10 5.34315 8.65685 4 7 4C5.34315 4 4 5.34315 4 7C4 8.65685 5.34315 10 7 10Z"
+                    stroke="#1E1926"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M17 20C18.6569 20 20 18.6569 20 17C20 15.3431 18.6569 14 17 14C15.3431 14 14 15.3431 14 17C14 18.6569 15.3431 20 17 20Z"
+                    stroke="#1E1926"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input
+                  className="ml-2 text-font_color text-sm grow"
+                  type="number"
+                  step="0.01"
+                  id="discount_percentage"
+                  placeholder="Discount Offer"
+                />
+              </div>
 
-            <input
-              className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3 "
-              type="text"
-              id="old_price"
-              required
-              placeholder="Full Price"
-            />
-            <div className="w-5" />
+              <label class="text-gray-400 text-sm">
+                Optional, you may leave it blank Optional
+              </label>
+            </div>
 
-            <input
-              className=" border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4 w-2/6 max-sm:w-full mt-3 "
-              type="text"
-              id="discount_price"
-              required
-              placeholder="Price after Discount"
-            />
+            <div className="w-5 " />
+            <div className="flex flex-col w-full max-sm:w-full mt-3">
+              <div className="flex border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  ">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.998 8.5H17.998C17.998 5.663 15.243 4.369 12.998 4.071V2H10.998V4.071C8.75305 4.369 5.99805 5.663 5.99805 8.5C5.99805 11.206 8.66405 12.613 10.998 12.93V17.9C9.55005 17.649 7.99805 16.876 7.99805 15.5H5.99805C5.99805 18.089 8.42305 19.619 10.998 19.936V22H12.998V19.93C15.243 19.632 17.998 18.337 17.998 15.5C17.998 12.663 15.243 11.369 12.998 11.071V6.1C14.328 6.339 15.998 7.041 15.998 8.5ZM7.99805 8.5C7.99805 7.041 9.66805 6.339 10.998 6.1V10.899C9.62705 10.646 7.99805 9.897 7.99805 8.5ZM15.998 15.5C15.998 16.959 14.328 17.661 12.998 17.9V13.1C14.328 13.339 15.998 14.041 15.998 15.5Z"
+                    fill="#1E1926"
+                  />
+                </svg>
+
+                <input
+                  className="ml-2 text-font_color text-sm grow  "
+                  type="number"
+                  id="old_price"
+                  step="0.01"
+                  placeholder="Full Price"
+                />
+              </div>
+              <label className="text-gray-400 text-sm">
+                Optional, you may leave it blank
+              </label>
+            </div>
+            <div className="w-5 " />
+            <div className="flex flex-col w-full max-sm:w-full mt-3">
+              <div className="flex border border-gray-400 text-font_color text-sm  shadow-inner rounded-md p-2 px-4  ">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.998 8.5H17.998C17.998 5.663 15.243 4.369 12.998 4.071V2H10.998V4.071C8.75305 4.369 5.99805 5.663 5.99805 8.5C5.99805 11.206 8.66405 12.613 10.998 12.93V17.9C9.55005 17.649 7.99805 16.876 7.99805 15.5H5.99805C5.99805 18.089 8.42305 19.619 10.998 19.936V22H12.998V19.93C15.243 19.632 17.998 18.337 17.998 15.5C17.998 12.663 15.243 11.369 12.998 11.071V6.1C14.328 6.339 15.998 7.041 15.998 8.5ZM7.99805 8.5C7.99805 7.041 9.66805 6.339 10.998 6.1V10.899C9.62705 10.646 7.99805 9.897 7.99805 8.5ZM15.998 15.5C15.998 16.959 14.328 17.661 12.998 17.9V13.1C14.328 13.339 15.998 14.041 15.998 15.5Z"
+                    fill="#1E1926"
+                  />
+                </svg>
+                <input
+                  className=" ml-2 text-font_color text-sm grow  "
+                  type="number"
+                  step="0.01"
+                  id="discount_price"
+                  placeholder="Price after Discount"
+                />
+              </div>
+              <label className="text-gray-400 text-sm">
+                Optional, you may leave it blank
+              </label>
+            </div>
           </div>
 
           {/* row */}
@@ -399,6 +474,9 @@ const PromotionForm = () => {
                   class="hidden"
                 />
               </label>
+              <label className="flex self-start text-gray-400 text-sm ">
+                Upload one image for the featured photo
+              </label>
 
               <div className="flex flex-wrap gap-2 mt-2">
                 {filesFeature.map((file, key) => {
@@ -481,6 +559,9 @@ const PromotionForm = () => {
                   type="file"
                   class="hidden"
                 />
+              </label>
+              <label className="flex self-start text-gray-400 text-sm ">
+                You can upload multiple images for your promotion
               </label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {filesPromotion.map((file, key) => {
